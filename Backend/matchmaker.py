@@ -60,6 +60,7 @@ class Matchmaker:
             print(f"Error in basic filtering: {e}")
             raise
 
+    # Create graph for user network
     def build_graph(self):
         try:
             for user in self.users:
@@ -76,6 +77,7 @@ class Matchmaker:
             print(f"Error building graph: {e}")
             raise
 
+    # Return compatibility score for weights of graph edges
     def predict_compatibility(self, user_preferences, other_user_preferences, user_interests, other_user_interests):
         try:
             # Dataset categories
@@ -102,6 +104,7 @@ class Matchmaker:
             print(f"Error predicting compatibility: {e}")
             raise
 
+    # Create Graph based on Matches Made & Rank Matched Users Based on Compatibility Score
     def graph_matchmaking(self, user):
         matches = []
 
@@ -131,7 +134,20 @@ class Matchmaker:
             matched_users.append((match[0], matched_user))
 
         return matched_users
+    
+    # Storing User Feedback
+    def collect_feedback(self, user, matched_user, feedback_score):
+        # Store the feedback score in the graph
+        if self.graph.has_edge(user, matched_user):
+            self.graph[user][matched_user]["feedback_score"] = feedback_score
 
+    # adjust weights of graph based on feedback score        
+    def adjust_weights(self):
+        for user, matched_user, data in self.graph.edges(data=True):
+            if "feedback_score" in data:
+                data["weight"] *= data["feedback_score"]
+
+    # Print Matched User 
     def print_matched_users(self, matched_users):
         for matched_user in matched_users:
             print("Matched User:")
@@ -148,4 +164,9 @@ if __name__ == "__main__":
     matchmaker.build_graph()
     user = "user8"  # Select a random user
     matched_users = matchmaker.graph_matchmaking(user)
+    for matched_user in matched_users:
+        feedback_score = input(f"How would you rate your match with {matched_user[0]}? (0-1): ")
+        matchmaker.collect_feedback(user, matched_user[0], float(feedback_score))
+    # Adjust the weights based on the feedback
+    matchmaker.adjust_weights()
     matchmaker.print_matched_users(matched_users)
