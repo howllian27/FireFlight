@@ -1,5 +1,5 @@
 <p align="center">
-    <img src = "https://github.com/howllian27/fireflight/assets/67510209/102af6c0-e45e-4568-88db-78223fbd35d6" style="vertical-align:middle" width="400">
+    <img src = "https://github.com/howllian27/FireFlight/assets/67510209/6e7fb075-55a1-4071-8699-800c75aebe9e" style="vertical-align:middle" width="400">
 </p>
 <p align="center">
   <b>FireFlight</b>
