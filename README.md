@@ -13,9 +13,14 @@
 <p> <b> FireFlight </b>  is an application that aspires to bring a fresh perspective to the travel and aviation industry. Our platform is designed to connect like-minded travelers, fostering a community that shares a passion for exploration and adventure. With Fireflight, users can find their perfect travel companion, making their journey more enjoyable and memorable. </p>
 <p>&nbsp;</p>
 <h1> Technology Stack </h1>
+<div align="center">
 <p align="center">
+  <kbd>
+      <img height="60" src="./assets/mysql.png">
+  </kbd>
   <b> MySQL | PyTorch | Scikit-Learn | NetworkX | Foursquare </b>
 </p>
+</div>
 <p>&nbsp;</p>
 <h1> Demo Video </h1>
 <p>&nbsp;</p>
