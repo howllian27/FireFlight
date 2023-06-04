@@ -9,10 +9,10 @@
   <i>Your Travel Companion for Sparking Connections</i>
 </p>
 <p>&nbsp;</p>
-<h1 align="center"> A Guide to FireFlight </h1>
+<h1 align="center">📖 A Guide to FireFlight </h1>
 <p> <b> FireFlight </b>  is an application that aspires to bring a fresh perspective to the travel and aviation industry. Our platform is designed to connect like-minded travelers, fostering a community that shares a passion for exploration and adventure. With Fireflight, users can find their perfect travel companion, making their journey more enjoyable and memorable. </p>
 <p>&nbsp;</p>
-<h1> Technology Stack </h1>
+<h1>⚙️ Technology Stack </h1>
 <div align="center">
 <p align="center">
   <kbd>
@@ -22,7 +22,7 @@
       <img height="60" src="./assets/pytorch.png">
   </kbd>
   <kbd>
-      <img height="60" src="./assets/scikit-learn.png">
+      <img height="60" src="./assets/scikit.png">
   </kbd>
   <kbd>
       <img height="60" src="./assets/networkX.png">
@@ -35,9 +35,9 @@
 </p>
 </div>
 <p>&nbsp;</p>
-<h1> Demo Video </h1>
+<h1>📽️ Demo Video </h1>
 <p>&nbsp;</p>
-<h1> Core Functionalities </h1>
+<h1>🔨 Core Functionalities </h1>
 <p><b>1. User Profiles</b></p>
 <p>Users can create personalized profiles, providing details about their interests, preferences, travel plans and even their personalities. This information is used to match them with like-minded travelers.</p>
 <p><b>2. Matchmaking Algorithm</b></p>
