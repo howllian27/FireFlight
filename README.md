@@ -20,11 +20,11 @@
 <h1> Demo Video </h1>
 <p>&nbsp;</p>
 <h1> Core Functionalities </h1>
-<p><b>User Profiles</b></p>
+<p><b>1. User Profiles</b></p>
 <p>Users can create personalized profiles, providing details about their interests, preferences, travel plans and even their personalities. This information is used to match them with like-minded travelers.</p>
-<p><b>Matchmaking Algorithm</b></p>
+<p><b>2. Matchmaking Algorithm</b></p>
 <p>Fireflight uses a sophisticated matchmaking algorithm that takes into account user preferences, shared interests, and other factors to suggest potential matches. The algorithm leverages machine learning and natural language processing to provide highly customised match suggestions.</p>
-<p><b>Shared Travel Platform</b></p>
+<p><b>3. Shared Travel Platform</b></p>
 <p>Our application acts as not only one that connects like-minded travelers together but also a one-stop platform where travelers can even make future plans for their trips. Once potential matches are formed, users can connect to each other within the app and a recommendation engine will recommend a series of attractions to the matched users. The attractions will be recommended based on their proximity from each of their hotels and shared interests.</p>
 <h1> Getting Started </h1>
 <h1> The Team </h1>
