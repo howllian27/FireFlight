@@ -18,6 +18,19 @@
   <kbd>
       <img height="60" src="./assets/mysql.png">
   </kbd>
+  <kbd>
+      <img height="60" src="./assets/pytorch.png">
+  </kbd>
+  <kbd>
+      <img height="60" src="./assets/scikit-learn.png">
+  </kbd>
+  <kbd>
+      <img height="60" src="./assets/networkX.png">
+  </kbd>
+  <kbd>
+      <img height="60" src="./assets/foursquare.png">
+  </kbd>
+  <br></br>
   <b> MySQL | PyTorch | Scikit-Learn | NetworkX | Foursquare </b>
 </p>
 </div>
