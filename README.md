@@ -22,7 +22,7 @@
       <img height="60" src="./assets/pytorch.png">
   </kbd>
   <kbd>
-      <img height="60" src="./assets/scikit-learn.png">
+      <img height="60" src="./assets/scikit.png">
   </kbd>
   <kbd>
       <img height="60" src="./assets/networkX.png">
