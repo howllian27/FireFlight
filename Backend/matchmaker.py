@@ -135,6 +135,14 @@ class Matchmaker:
 
         return matched_users
     
+    # Add User and Update Existing Graph
+    def add_user_and_update_graph(self, user):
+        self.add_user_to_graph(user)
+        for other_user in self.users:
+            if other_user != user:
+                if self.basic_filtering(self.users[user], self.users[other_user]):
+                    self.add_edge_to_graph(user, other_user)
+
     # Storing User Feedback
     def collect_feedback(self, user, matched_user, feedback_score):
         # Store the feedback score in the graph

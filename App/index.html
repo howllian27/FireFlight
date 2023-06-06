@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test Flask API</title>
+    <script src="script.js"></script>
+</head>
+<body>
+    <form onsubmit="submitForm(event)">
+        <label for="user-id">User ID:</label>
+        <input type="text" id="user-id" name="user-id">
+        <input type="submit" value="Submit">
+    </form>
+    <pre id="response"></pre>
+
+    <hr>
+
+    <form onsubmit="addUser(event)">
+        <br>
+            <label for="new-user-id">New User ID:</label>
+            <input type="text" id="new-user-id" name="new-user-id">
+        </br>
+        <br>
+            <label for="new-user-interests">Interests:</label>
+            <input type="text" id="new-user-interests" name="new-user-interests">
+        </br>
+        <br>
+            <label for="new-user-age-group">Age Group:</label>
+            <input type="text" id="new-user-age-group" name="new-user-age-group">
+        </br>
+        <br>
+            <label for="new-user-gender">Gender Preference:</label>
+            <input type="text" id="new-user-gender" name="new-user-gender">
+        </br>
+        <br>
+            <label for="new-user-city">Destination City:</label>
+            <input type="text" id="new-user-city" name="new-user-city">
+        </br>
+        <br>
+            <input type="submit" value="Add User">
+        </br>
+    </form>
+</body>
+</html>
