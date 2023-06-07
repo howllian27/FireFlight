@@ -1,6 +1,7 @@
 from flask import Flask, request, jsonify
 from matchmaker import Matchmaker
 from generate import users
+import os
 
 app = Flask(__name__)
 matchmaker = Matchmaker(users, "matchmaking_model.pth")
@@ -19,6 +20,22 @@ def feedback():
     feedback_score = request.json['feedback_score']
     matchmaker.collect_feedback(user, matched_user, feedback_score)
     matchmaker.adjust_weights()
+    return jsonify({'status': 'success'})
+
+@app.route('/addUser', methods=['POST'])
+def add_user():
+    user = request.json['user']
+    gender = request.json['gender']
+    interests = request.json['interests']
+    print("This is the user: ", str(user))
+    users[user] = {'gender': 'female', 'age': 20, 'genderPreference': gender, 'interests': interests, 'vacationType': 'History', 'hotel': 'Hotel 50', 'ageGroupPreference': '26-35', 'userID': user}
+    # Change the working directory to the Backend directory
+    os.chdir(os.path.dirname(os.path.abspath(__file__)))
+    outFile = open("generate.py","w")
+    outFile = open("generate.py","w")
+    outFile.write("users = %s" % (str(users)))
+    outFile.close()
+    matchmaker.add_user_and_update_graph(user)
     return jsonify({'status': 'success'})
 
 if __name__ == '__main__':
