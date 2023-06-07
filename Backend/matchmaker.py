@@ -142,6 +142,19 @@ class Matchmaker:
             if other_user != user:
                 if self.basic_filtering(self.users[user], self.users[other_user]):
                     self.add_edge_to_graph(user, other_user)
+                    # Compute the compatibility score
+                    user_preferences = [self.users[user]["genderPreference"], self.users[user]["ageGroupPreference"]]
+                    user_interests = self.users[user]["interests"]
+                    other_user_preferences = [self.users[other_user]["gender"], self.users[other_user]["ageGroupPreference"]]
+                    other_user_interests = self.users[other_user]["interests"]
+                    compatibility_score_tensor = self.predict_compatibility(
+                        user_preferences, other_user_preferences, user_interests, other_user_interests
+                    )
+                    # Take the mean of the tensor to get a scalar compatibility score
+                    compatibility_score = compatibility_score_tensor.mean().item()
+                    # Set the edge weight to the compatibility score
+                    self.graph[user][other_user]["weight"] = compatibility_score
+
 
     # Storing User Feedback
     def collect_feedback(self, user, matched_user, feedback_score):

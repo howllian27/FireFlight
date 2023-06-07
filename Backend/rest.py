@@ -32,7 +32,6 @@ def add_user():
     # Change the working directory to the Backend directory
     os.chdir(os.path.dirname(os.path.abspath(__file__)))
     outFile = open("generate.py","w")
-    outFile = open("generate.py","w")
     outFile.write("users = %s" % (str(users)))
     outFile.close()
     matchmaker.add_user_and_update_graph(user)
