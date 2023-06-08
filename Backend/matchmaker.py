@@ -156,7 +156,8 @@ class Matchmaker:
                 data["weight"] *= data["feedback_score"]
 
     # Print Matched User 
-    def print_matched_users(self, matched_users):
+    def print_matched_users(self, user, matched_users):
+        print(f"Printing matches for {user}:")
         for matched_user in matched_users:
             print("Matched User:")
             print(f"User ID: {matched_user[0]}")
@@ -177,4 +178,4 @@ if __name__ == "__main__":
         matchmaker.collect_feedback(user, matched_user[0], float(feedback_score))
     # Adjust the weights based on the feedback
     matchmaker.adjust_weights()
-    matchmaker.print_matched_users(matched_users)
+    matchmaker.print_matched_users(user, matched_users)
