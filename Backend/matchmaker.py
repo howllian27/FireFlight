@@ -72,8 +72,6 @@ class Matchmaker:
                     user2 = list(self.users.keys())[j]
 
                     if self.basic_filtering(self.users[user1], self.users[user2]):
-                        if (user2=="user537"):
-                            print("user537 IS HERE", user1)
                         self.add_edge_to_graph(user1, user2)
         except Exception as e:
             print(f"Error building graph: {e}")
@@ -173,7 +171,7 @@ class Matchmaker:
 if __name__ == "__main__":
     matchmaker = Matchmaker(users, "matchmaking_model.pth")
     matchmaker.build_graph()
-    user = "user537"  # Select a random user
+    user = "user536"  # Select a random user
     matched_users = matchmaker.graph_matchmaking(user)
     for matched_user in matched_users:
         feedback_score = input(f"How would you rate your match with {matched_user[0]}? (0-1): ")

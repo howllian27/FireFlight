@@ -26,7 +26,7 @@ def feedback():
 def add_user():
     user = request.json['user']
     gender = request.json['gender']
-    age = request.json['age']
+    age = int(request.json['age'])
     interests = request.json['interests']
     ageGroupPreference = request.json['ageGroupPreference']
     genderPreference = request.json['genderPreference']
