@@ -26,9 +26,13 @@ def feedback():
 def add_user():
     user = request.json['user']
     gender = request.json['gender']
+    age = request.json['age']
     interests = request.json['interests']
+    ageGroupPreference = request.json['ageGroupPreference']
+    genderPreference = request.json['genderPreference']
+
     print("This is the user: ", str(user))
-    users[user] = {'gender': 'female', 'age': 20, 'genderPreference': gender, 'interests': interests, 'vacationType': 'History', 'hotel': 'Hotel 50', 'ageGroupPreference': '26-35', 'userID': user}
+    users[user] = {'gender': gender, 'age': age, 'genderPreference': genderPreference, 'interests': interests, 'vacationType': 'History', 'hotel': 'Hotel 50', 'ageGroupPreference': ageGroupPreference, 'userID': user}
     # Change the working directory to the Backend directory
     os.chdir(os.path.dirname(os.path.abspath(__file__)))
     outFile = open("generate.py","w")

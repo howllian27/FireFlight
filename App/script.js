@@ -23,9 +23,11 @@ function addUser(event) {
     event.preventDefault();
 
     var userId = document.getElementById('new-user-id').value;
-    var interests = document.getElementById('new-user-interests').value.split(',');
-    var ageGroup = document.getElementById('new-user-age-group').value;
     var gender = document.getElementById('new-user-gender').value;
+    var age = document.getElementById('new-user-age').value;
+    var interests = document.getElementById('new-user-interests').value.split(',');
+    var ageGroupPreference = document.getElementById('new-user-age-group-preference').value;
+    var genderPreference = document.getElementById('new-user-gender-preference').value;
     var city = document.getElementById('new-user-city').value;
 
     fetch('http://127.0.0.1:5000/addUser', {
@@ -35,9 +37,11 @@ function addUser(event) {
         },
         body: JSON.stringify({
             user: userId,
-            interests: interests,
-            ageGroup: ageGroup,
             gender: gender,
+            age: age,
+            interests: interests,
+            ageGroupPreference: ageGroupPreference,
+            genderPreference: genderPreference,
             city: city
         })
     })
