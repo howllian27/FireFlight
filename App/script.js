@@ -25,7 +25,7 @@ function addUser(event) {
     var userId = document.getElementById('new-user-id').value;
     var gender = document.getElementById('new-user-gender').value;
     var age = document.getElementById('new-user-age').value;
-    var interests = document.getElementById('new-user-interests').value.split(',');
+    var interests = document.getElementById('new-user-interests').value.toLowerCase().split(',');
     var ageGroupPreference = document.getElementById('new-user-age-group-preference').value;
     var genderPreference = document.getElementById('new-user-gender-preference').value;
     var city = document.getElementById('new-user-city').value;

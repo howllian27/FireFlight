@@ -31,15 +31,19 @@ def add_user():
     ageGroupPreference = request.json['ageGroupPreference']
     genderPreference = request.json['genderPreference']
 
-    print("This is the user: ", str(user))
-    users[user] = {'gender': gender, 'age': age, 'genderPreference': genderPreference, 'interests': interests, 'vacationType': 'History', 'hotel': 'Hotel 50', 'ageGroupPreference': ageGroupPreference, 'userID': user}
-    # Change the working directory to the Backend directory
-    os.chdir(os.path.dirname(os.path.abspath(__file__)))
-    outFile = open("generate.py","w")
-    outFile.write("users = %s" % (str(users)))
-    outFile.close()
-    matchmaker.add_user_and_update_graph(user)
-    return jsonify({'status': 'success'})
+    if user not in users.keys():
+        print("This is the user: ", str(user))
+        users[user] = {'gender': gender, 'age': age, 'genderPreference': genderPreference, 'interests': interests, 'vacationType': 'History', 'hotel': 'Hotel 50', 'ageGroupPreference': ageGroupPreference, 'userID': user}
+        # Change the working directory to the Backend directory
+        os.chdir(os.path.dirname(os.path.abspath(__file__)))
+        outFile = open("generate.py","w")
+        outFile.write("users = %s" % (str(users)))
+        outFile.close()
+        matchmaker.add_user_and_update_graph(user)
+        return jsonify({'status': 'success'})
+    else:
+        print("This user id is alr taken! Try another")
+        return jsonify({'status': '404'})
 
 if __name__ == '__main__':
     matchmaker.build_graph()

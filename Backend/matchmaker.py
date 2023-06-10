@@ -27,8 +27,12 @@ class Matchmaker:
 
     def add_edge_to_graph(self, user1, user2):
         try:
+            if (user1 == "user549" or user2 == "user549"):
+                print("user549", user1)
             shared_interests = set(self.users[user1]["interests"]).intersection(self.users[user2]["interests"])
             if shared_interests:
+                if (user1 == "user549" or user2 == "user549"):
+                    print("Edge has been added!")
                 self.graph.add_edge(user1, user2, weight=len(shared_interests))
         except Exception as e:
             print(f"Error adding edge to graph: {e}")
@@ -78,7 +82,7 @@ class Matchmaker:
             raise
 
     # Return compatibility score for weights of graph edges
-    def predict_compatibility(self, user_preferences, other_user_preferences, user_interests, other_user_interests):
+    def predict_compatibility(self, user, user_preferences, other_user_preferences, user_interests, other_user_interests):
         try:
             # Dataset categories
             gender_categories = ["male", "female"]
@@ -99,6 +103,7 @@ class Matchmaker:
             # Make a prediction using the model
             compatibility_score = self.model(input_tensor)
 
+            print(user, compatibility_score)
             return compatibility_score
         except Exception as e:
             print(f"Error predicting compatibility: {e}")
@@ -107,7 +112,7 @@ class Matchmaker:
     # Create Graph based on Matches Made & Rank Matched Users Based on Compatibility Score
     def graph_matchmaking(self, user):
         matches = []
-
+        print(user)
         user_preferences = [self.users[user]["genderPreference"], self.users[user]["ageGroupPreference"]]
         user_interests = self.users[user]["interests"]
 
@@ -115,10 +120,11 @@ class Matchmaker:
             if other_user != user:
                 other_user_preferences = [self.users[other_user]["gender"], self.users[other_user]["ageGroupPreference"]]
                 other_user_interests = self.users[other_user]["interests"]
+                print(self.graph.has_edge(user, other_user))
 
                 if self.graph.has_edge(user, other_user):
                     compatibility_score_tensor = self.predict_compatibility(
-                    user_preferences, other_user_preferences, user_interests, other_user_interests
+                    user, user_preferences, other_user_preferences, user_interests, other_user_interests
                     )
                     # Take the mean of the tensor to get a scalar compatibility score
                     compatibility_score = compatibility_score_tensor.mean().item()
@@ -171,7 +177,7 @@ class Matchmaker:
 if __name__ == "__main__":
     matchmaker = Matchmaker(users, "matchmaking_model.pth")
     matchmaker.build_graph()
-    user = "user536"  # Select a random user
+    user = "user549"  # Select a random user
     matched_users = matchmaker.graph_matchmaking(user)
     for matched_user in matched_users:
         feedback_score = input(f"How would you rate your match with {matched_user[0]}? (0-1): ")
