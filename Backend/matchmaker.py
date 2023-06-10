@@ -1,5 +1,6 @@
 from generate import users
 from model import MatchmakingModel, createData
+from bio_comparison import BioComparison
 import numpy as np
 import matplotlib.pyplot as plt
 import random
@@ -11,6 +12,7 @@ class Matchmaker:
         self.users = users
         self.graph = nx.Graph()
         self.model = MatchmakingModel(31, 64, 8)
+        self.bio_comparison = BioComparison()
         try:
             self.model.load_state_dict(torch.load(model_path))
             self.model.eval()
