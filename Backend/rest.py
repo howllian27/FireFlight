@@ -9,11 +9,13 @@ matchmaker = Matchmaker(users, "matchmaking_model.pth")
 @app.route('/match', methods=['GET','POST'])
 def match():
     if request.method == 'POST':
+        print("HI IM POST")
         user = request.json['user']
         matched_users = matchmaker.graph_matchmaking(user)
         print(matched_users)
         return jsonify(matched_users)
     else:
+        print("HI IM NOT POST")
         user = request.args.get('user')
         if user:
             matched_users = matchmaker.graph_matchmaking(user)

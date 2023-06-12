@@ -17,7 +17,43 @@ class MatchmakingModel(nn.Module):
         x = F.relu(self.fc1(x))
         x = F.relu(self.fc2(x))
         x = self.fc3(x)
-        return torch.sigmoid(x)  
+        return torch.sigmoid(x)
+    
+    def train_model(self):
+        # Define hyperparameters
+        input_size = len(X_train[0])
+        hidden_size = 64
+        output_size = len(y_train[0])
+        learning_rate = 0.001
+        num_epochs = 50
+
+        # Create an instance of the matchmaking model
+        model = MatchmakingModel(input_size, hidden_size, output_size)
+
+        # Define the loss function and optimizer
+        criterion = nn.BCELoss()
+        optimizer = optim.Adam(model.parameters(), lr=learning_rate)
+
+        # Convert your data to PyTorch tensors
+        X_train_tensor = torch.tensor(X_train, dtype=torch.float32)
+        y_train_tensor = torch.tensor(y_train, dtype=torch.float32)
+
+        # Training loop
+        for epoch in range(num_epochs):
+            # Forward pass
+            outputs = model(X_train_tensor)
+            loss = criterion(outputs, y_train_tensor)
+
+            # Backward pass and optimization
+            optimizer.zero_grad()
+            loss.backward()
+            optimizer.step()
+
+            # Print the loss for this epoch
+            print(f"Epoch {epoch+1}/{num_epochs}, Loss: {loss.item()}")
+
+        # Save the trained model
+        torch.save(model.state_dict(), "matchmaking_model.pth")
     
 
 # Prepare your dataset (features and labels)
@@ -64,37 +100,3 @@ def preprocessData():
         createData(filtered_users, user_preferences, user_interests)    
 
 preprocessData()    
-# Convert your data to PyTorch tensors
-X_train_tensor = torch.tensor(X_train, dtype=torch.float32)
-y_train_tensor = torch.tensor(y_train, dtype=torch.float32)
-
-# Define hyperparameters
-input_size = len(X_train[0])
-hidden_size = 64
-output_size = len(y_train[0])
-learning_rate = 0.001
-num_epochs = 50
-
-# Create an instance of the matchmaking model
-model = MatchmakingModel(input_size, hidden_size, output_size)
-
-# Define the loss function and optimizer
-criterion = nn.BCELoss()
-optimizer = optim.Adam(model.parameters(), lr=learning_rate)
-
-# Training loop
-for epoch in range(num_epochs):
-    # Forward pass
-    outputs = model(X_train_tensor)
-    loss = criterion(outputs, y_train_tensor)
-    
-    # Backward pass and optimization
-    optimizer.zero_grad()
-    loss.backward()
-    optimizer.step()
-    
-    # Print the loss for this epoch
-    print(f"Epoch {epoch+1}/{num_epochs}, Loss: {loss.item()}")
-
-# Save the trained model
-torch.save(model.state_dict(), "matchmaking_model.pth")
