@@ -16,7 +16,7 @@ def test_server():
 
     # Check the response
     assert response.status_code == 200
-    assert 'matched_users' in response.json()
+    assert 'matched users' in response.json()
 
 def test_match_endpoint():
     # Define the URL of your server
