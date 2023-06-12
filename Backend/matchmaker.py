@@ -117,13 +117,13 @@ class Matchmaker:
         print(user)
         user_preferences = [self.users[user]["genderPreference"], self.users[user]["ageGroupPreference"]]
         user_interests = self.users[user]["interests"]
-        user_bio = self.users[user]["bio"]
+        # user_bio = self.users[user]["bio"]
 
         for other_user in self.users:
             if other_user != user:
                 other_user_preferences = [self.users[other_user]["gender"], self.users[other_user]["ageGroupPreference"]]
                 other_user_interests = self.users[other_user]["interests"]
-                other_user_bio = self.users[other_user]["bio"]
+                # other_user_bio = self.users[other_user]["bio"]
 
                 if self.graph.has_edge(user, other_user):
                     compatibility_score = self.predict_compatibility(
