@@ -13,8 +13,7 @@ import os
 nltk.data.path.append(os.path.join(os.path.dirname(__file__), 'nltk_data'))
 
 # Check if NLTK data is already downloaded
-if not nltk.data.find('tokenizers/punkt'):
-    nltk.download('punkt')
+nltk.download('punkt')
 nltk.download('wordnet')
 
 # Load the BERT tokenizer and model
