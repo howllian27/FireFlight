@@ -12,7 +12,7 @@ def test_server():
     time.sleep(2)
 
     # Send a request to the server
-    response = requests.get('http://localhost:5000/match', json={'user': 'user1'})
+    response = requests.get('http://127.0.0.1:5000/match', json={'user': 'user1'})
 
     # Check the response
     assert response.status_code == 200
