@@ -103,10 +103,9 @@ class Matchmaker:
             # get bio_comparison
             bio_similarity = self.bio_comparison.compare_sentences(bio1, bio2)
 
-            # Make a prediction using the model
-            compatibility_score = self.model(input_tensor) + bio_similarity
+            # Make a prediction using the model and take the mean of the tensor to get a scalar compatibility score
+            compatibility_score = self.model(input_tensor).mean().item() + bio_similarity
 
-            print(user, compatibility_score)
             return compatibility_score
         except Exception as e:
             print(f"Error predicting compatibility: {e}")
@@ -127,11 +126,9 @@ class Matchmaker:
                 other_user_bio = self.users[other_user]["bio"]
 
                 if self.graph.has_edge(user, other_user):
-                    compatibility_score_tensor = self.predict_compatibility(
-                    user, user_preferences, other_user_preferences, user_interests, other_user_interests, user_bio, other_user_bio
+                    compatibility_score = self.predict_compatibility(
+                    user, user_preferences, other_user_preferences, user_interests, other_user_interests, " ", " "
                     )
-                    # Take the mean of the tensor to get a scalar compatibility score
-                    compatibility_score = compatibility_score_tensor.mean().item()
                     matches.append((other_user, compatibility_score))
 
         print(matches)
