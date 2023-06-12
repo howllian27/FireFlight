@@ -82,7 +82,7 @@ class Matchmaker:
             raise
 
     # Return compatibility score for weights of graph edges
-    def predict_compatibility(self, user, user_preferences, other_user_preferences, user_interests, other_user_interests):
+    def predict_compatibility(self, user, user_preferences, other_user_preferences, user_interests, other_user_interests, bio1, bio2):
         try:
             # Dataset categories
             gender_categories = ["male", "female"]
@@ -100,8 +100,11 @@ class Matchmaker:
             input_data = user_preferences_encoded + other_user_preferences_encoded + user_interests_encoded + other_user_interests_encoded + [potential_connections]
             input_tensor = torch.tensor([input_data], dtype=torch.float32)
 
+            # get bio_comparison
+            bio_similarity = self.bio_comparison.compare_sentences(bio1, bio2)
+
             # Make a prediction using the model
-            compatibility_score = self.model(input_tensor)
+            compatibility_score = self.model(input_tensor) + bio_similarity
 
             print(user, compatibility_score)
             return compatibility_score
@@ -115,16 +118,17 @@ class Matchmaker:
         print(user)
         user_preferences = [self.users[user]["genderPreference"], self.users[user]["ageGroupPreference"]]
         user_interests = self.users[user]["interests"]
+        user_bio = self.users[user]["bio"]
 
         for other_user in self.users:
             if other_user != user:
                 other_user_preferences = [self.users[other_user]["gender"], self.users[other_user]["ageGroupPreference"]]
                 other_user_interests = self.users[other_user]["interests"]
-                print(self.graph.has_edge(user, other_user))
+                other_user_bio = self.users[other_user]["bio"]
 
                 if self.graph.has_edge(user, other_user):
                     compatibility_score_tensor = self.predict_compatibility(
-                    user, user_preferences, other_user_preferences, user_interests, other_user_interests
+                    user, user_preferences, other_user_preferences, user_interests, other_user_interests, user_bio, other_user_bio
                     )
                     # Take the mean of the tensor to get a scalar compatibility score
                     compatibility_score = compatibility_score_tensor.mean().item()
