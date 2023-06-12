@@ -1,4 +1,7 @@
 import requests
+import json
+import time
+import webbrowser
 
 query = "coffee"
 location = "47.606,-122.349358"
