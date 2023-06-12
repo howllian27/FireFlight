@@ -23,5 +23,5 @@ jobs:
       run: ls -R
       
     - name: Run tests
-      run: python backend/test_server.py
+      run: python Backend/test_server.py
     
