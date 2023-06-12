@@ -6,12 +6,20 @@ import os
 app = Flask(__name__)
 matchmaker = Matchmaker(users, "matchmaking_model.pth")
 
-@app.route('/match', methods=['POST'])
+@app.route('/match', methods=['GET','POST'])
 def match():
-    user = request.json['user']
-    matched_users = matchmaker.graph_matchmaking(user)
-    print(matched_users)
-    return jsonify(matched_users)
+    if request.method == 'POST':
+        user = request.json['user']
+        matched_users = matchmaker.graph_matchmaking(user)
+        print(matched_users)
+        return jsonify(matched_users)
+    else:
+        user = request.args.get('user')
+        if user:
+            matched_users = matchmaker.graph_matchmaking(user)
+            return jsonify(matched_users)
+        else:
+            return jsonify({'error': 'Missing user parameter'})
 
 @app.route('/feedback', methods=['POST'])
 def feedback():
