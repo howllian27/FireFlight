@@ -29,8 +29,6 @@ class Matchmaker:
 
     def add_edge_to_graph(self, user1, user2):
         try:
-            if (user1 == "user549" or user2 == "user549"):
-                print("user549", user1)
             shared_interests = set(self.users[user1]["interests"]).intersection(self.users[user2]["interests"])
             if shared_interests:
                 if (user1 == "user549" or user2 == "user549"):
