@@ -17,7 +17,8 @@ def match():
         user = request.args.get('user')
         if user:
             matched_users = matchmaker.graph_matchmaking(user)
-            return jsonify(matched_users)
+            response = {'matched users': matched_users}
+            return jsonify(response)
         else:
             return jsonify({'error': 'Missing user parameter'})
 
