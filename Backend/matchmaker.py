@@ -17,7 +17,8 @@ class Matchmaker:
         self.bio_comparison = BioComparison()
         try:
             if not os.path.exists(model_path):
-                self.train_model()
+                self.model = MatchmakingModel(31, 64, 8)
+                self.model.train_model()
             self.load_model()
         except Exception as e:
             print(f"Error loading model: {e}")
@@ -43,8 +44,6 @@ class Matchmaker:
         try:
             shared_interests = set(self.users[user1]["interests"]).intersection(self.users[user2]["interests"])
             if shared_interests:
-                if (user1 == "user549" or user2 == "user549"):
-                    print("Edge has been added!")
                 self.graph.add_edge(user1, user2, weight=len(shared_interests))
         except Exception as e:
             print(f"Error adding edge to graph: {e}")

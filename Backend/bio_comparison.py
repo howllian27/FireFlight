@@ -69,6 +69,6 @@ class BioComparison:
         bert_similarity = self.cosine_similarity(embeddings1, embeddings2)
         return bert_similarity
 
-sentence1, sentence2 = "Soccer is my favourite sport", "I love soccer"
-bio_comparison = BioComparison()
-print(bio_comparison.compare_sentences(sentence1, sentence2))
+# sentence1, sentence2 = "Soccer is my favourite sport", "I love soccer"
+# bio_comparison = BioComparison()
+# print(bio_comparison.compare_sentences(sentence1, sentence2))
