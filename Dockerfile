@@ -2,16 +2,7 @@
 FROM python:3.10.5
 
 # Set the working directory inside the container
-WORKDIR /app/Backend
-
-# Copy the requirements.txt file to the working directory
-COPY Backend .
-
-# Install the Python dependencies
-RUN pip install --no-cache-dir -r requirements.txt
-
-# Copy the rest of the application code to the working directory
-COPY . .
+WORKDIR /Backend
 
 # Set the command to run when the container starts
-CMD [ "python", "./Backend/rest.py" ]
+CMD [ "python", "rest.py" ]
