@@ -10,5 +10,8 @@ COPY ./Backend /app/Backend
 # Install the Python dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
+# Expose port 5000
+EXPOSE 5000
+
 # Set the command to run when the container starts
 CMD [ "python", "rest.py" ]
