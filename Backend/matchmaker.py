@@ -20,6 +20,7 @@ class Matchmaker:
                 self.model = MatchmakingModel(31, 64, 8)
                 self.model.train_model()
             self.load_model()
+            self.build_graph() 
         except Exception as e:
             print(f"Error loading model: {e}")
             raise
@@ -117,6 +118,8 @@ class Matchmaker:
             # Make a prediction using the model and take the mean of the tensor to get a scalar compatibility score
             compatibility_score = self.model(input_tensor).mean().item() + bio_similarity
 
+            print(compatibility_score)
+
             return compatibility_score
         except Exception as e:
             print(f"Error predicting compatibility: {e}")
@@ -186,14 +189,14 @@ class Matchmaker:
             print(f"Hotel: {matched_user[1]['hotel']}")
             print("--------------------")
 
-# if __name__ == "__main__":
-#     matchmaker = Matchmaker(users, "matchmaking_model.pth")
-#     matchmaker.build_graph()
-#     user = "user549"  # Select a random user
-#     matched_users = matchmaker.graph_matchmaking(user)
-#     for matched_user in matched_users:
-#         feedback_score = input(f"How would you rate your match with {matched_user[0]}? (0-1): ")
-#         matchmaker.collect_feedback(user, matched_user[0], float(feedback_score))
-#     # Adjust the weights based on the feedback
-#     matchmaker.adjust_weights()
-#     matchmaker.print_matched_users(user, matched_users)
+if __name__ == "__main__":
+    matchmaker = Matchmaker(users, "matchmaking_model.pth")
+    matchmaker.build_graph()
+    user = "user549"  # Select a random user
+    matched_users = matchmaker.graph_matchmaking(user)
+    for matched_user in matched_users:
+        feedback_score = input(f"How would you rate your match with {matched_user[0]}? (0-1): ")
+        matchmaker.collect_feedback(user, matched_user[0], float(feedback_score))
+    # Adjust the weights based on the feedback
+    matchmaker.adjust_weights()
+    matchmaker.print_matched_users(user, matched_users)
