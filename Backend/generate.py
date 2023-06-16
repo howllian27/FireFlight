@@ -15,17 +15,19 @@ print(df2)
 #get latest user info
 new_user_id = list(df2)[-1]
 new_user = df2[list(df2)[-1]]
-new_user_format = {}
-for k, v in new_user.items():
-    if k == 'Name' or 'age' or 'ageGroupPreference':
-        new_user_format[k] = v
-    elif k == 'gender' or 'genderPreference':
-        new_user_format[k] = v.lower()
-    elif k == 'interests':
-        new_user_format[k] = v.split(", ")
 
-new_dict = {} #this is your dictionary
+print(new_user_id)
+print(new_user)
 
-#insert info into dictionary
-new_dict["user" + str(new_user_id)] = new_user_format
-print(new_dict)
+while True:
+    if list(df2)[-1] != new_user_id:
+        new_user_format = {}
+        for k, v in new_user.items():
+            if k == 'Name' or 'age' or 'ageGroupPreference':
+                new_user_format[k] = v
+            elif k == 'gender' or 'genderPreference':
+                new_user_format[k] = v.lower()
+            elif k == 'interests':
+                new_user_format[k] = v.split(", ")
+        users["user" +str(new_user_id)] = new_user_format
+
