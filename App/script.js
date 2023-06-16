@@ -3,7 +3,7 @@ function submitForm(event) {
 
     var userId = document.getElementById('user-id').value;
 
-    fetch('http://3.1.64.147:5000/match', {
+    fetch('http://127.0.0.1:5000/match', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -30,7 +30,7 @@ function addUser(event) {
     var genderPreference = document.getElementById('new-user-gender-preference').value;
     var city = document.getElementById('new-user-city').value;
 
-    fetch('http://127.0.0.1:5000/addUser', {
+    fetch('http://127.0.0.1:5000//addUser', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
