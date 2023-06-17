@@ -162,6 +162,7 @@ class Matchmaker:
         for other_user in self.users:
             if other_user != user:
                 if self.basic_filtering(self.users[user], self.users[other_user]):
+                    print(user, other_user)
                     self.add_edge_to_graph(user, other_user)
 
     # Storing User Feedback
