@@ -93,7 +93,7 @@ last_row = data[-1]
 def format_user_data(user_data):
     user_format = {}
     for k, v in user_data.items():
-        if k in ['Name', 'ageGroupPreference']:
+        if k in ['Name', 'ageGroupPreference', 'bio']:
             user_format[k] = v
         elif k=='age':
             user_format[k] = int(v)
@@ -136,10 +136,12 @@ def add_user_data():
             # get the matched users
             matched_users = matchmaker.graph_matchmaking(user_key)
 
-            print("This is the matched users ", matched_users)
+            final_matched_users = [match[0] for match in matched_users]
+
+            print("This is the matched users ", final_matched_users)
         
             # Write the matched users in the second sheet
-            sheet2.append_row([user_key, ','.join(matched_users)])
+            sheet2.append_row([user_key, ','.join(final_matched_users)])
 
 
 while True:

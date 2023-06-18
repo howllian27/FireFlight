@@ -51,8 +51,8 @@ class Matchmaker:
             raise
 
     def age_format(self, age_group_preference):
-        if age_group_preference == "55 and above":
-            age_group_preference = "55-100"
+        if age_group_preference == "56+":
+            age_group_preference = "56-100"
         return age_group_preference
 
     def basic_filtering(self, user, other_user):
@@ -98,7 +98,7 @@ class Matchmaker:
         try:
             # Dataset categories
             gender_categories = ["male", "female"]
-            age_group_categories = ["18-25", "26-35", "36-45", "46-54", "55 and above"]
+            age_group_categories = ["18-25", "26-35", "36-45", "46-55", "56+"]
             interest_categories = ["History", "Adventure", "Nature", "Nightlife", "Food", "Beach", "Shopping", "Cultural"]
 
             # One-hot encode the categorical variables
@@ -116,6 +116,7 @@ class Matchmaker:
             bio_similarity = self.bio_comparison.compare_sentences(bio1, bio2)
 
             # Make a prediction using the model and take the mean of the tensor to get a scalar compatibility score
+            print("Tensor is ", self.model(input_tensor).mean().item())
             compatibility_score = self.model(input_tensor).mean().item() + bio_similarity
 
             print(compatibility_score)
@@ -131,21 +132,20 @@ class Matchmaker:
         print(user)
         user_preferences = [self.users[user]["genderPreference"], self.users[user]["ageGroupPreference"]]
         user_interests = self.users[user]["interests"]
-        # user_bio = self.users[user]["bio"]
+        user_bio = self.users[user]["bio"]
 
         for other_user in self.users:
             if other_user != user:
                 other_user_preferences = [self.users[other_user]["gender"], self.users[other_user]["ageGroupPreference"]]
                 other_user_interests = self.users[other_user]["interests"]
-                # other_user_bio = self.users[other_user]["bio"]
+                other_user_bio = self.users[other_user]["bio"]
 
                 if self.graph.has_edge(user, other_user):
                     compatibility_score = self.predict_compatibility(
-                    user, user_preferences, other_user_preferences, user_interests, other_user_interests, " ", " "
+                    user, user_preferences, other_user_preferences, user_interests, other_user_interests, user_bio, other_user_bio
                     )
                     matches.append((other_user, compatibility_score))
 
-        print(matches)
         sorted_scores = sorted(matches, key=lambda x: x[1], reverse=True)
         top_matches = sorted_scores[:5]
 
@@ -154,6 +154,7 @@ class Matchmaker:
             matched_user = self.users[match[0]]
             matched_users.append((match[0], matched_user))
 
+        print(matched_users)
         return matched_users
     
     # Add User and Update Existing Graph
@@ -193,7 +194,7 @@ class Matchmaker:
 if __name__ == "__main__":
     matchmaker = Matchmaker(users, "matchmaking_model.pth")
     matchmaker.build_graph()
-    user = "user549"  # Select a random user
+    user = "user449"  # Select a random user
     matched_users = matchmaker.graph_matchmaking(user)
     for matched_user in matched_users:
         feedback_score = input(f"How would you rate your match with {matched_user[0]}? (0-1): ")

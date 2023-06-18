@@ -61,7 +61,7 @@ X_train = []
 y_train = []
 
 gender_categories = ["male", "female"]
-age_group_categories = ["18-25", "26-35", "36-45", "46-54", "55 and above"]
+age_group_categories = ["18-25", "26-35", "36-45", "46-55", "56+"]
 interest_categories = ["History", "Adventure", "Nature", "Nightlife", "Food", "Beach", "Shopping", "Cultural"]
 
 
