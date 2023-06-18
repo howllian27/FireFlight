@@ -145,6 +145,7 @@ class Matchmaker:
                     user, user_preferences, other_user_preferences, user_interests, other_user_interests, user_bio, other_user_bio
                     )
                     matches.append((other_user, compatibility_score))
+                    print(matches)
 
         sorted_scores = sorted(matches, key=lambda x: x[1], reverse=True)
         top_matches = sorted_scores[:5]

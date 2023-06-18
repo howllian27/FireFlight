@@ -77,7 +77,7 @@ spreadsheet = gc.open_by_key("10RDxyuBw5ygMn79vQA5aove-bzjDJ9mNWblUO0SK-xw")
 
 # Select the two sheets
 sheet1 = spreadsheet.get_worksheet(0)  # users data is in the first sheet
-sheet2 = spreadsheet.get_worksheet(1)  # matched users will be written in the second sheet
+sheet2 = spreadsheet.get_worksheet(2)  # matched users will be written in the second sheet
 
 # Load users from generate.py
 with open("generate.py", "r") as infile:
@@ -93,7 +93,7 @@ last_row = data[-1]
 def format_user_data(user_data):
     user_format = {}
     for k, v in user_data.items():
-        if k in ['Name', 'ageGroupPreference', 'bio']:
+        if k in ['name', 'ageGroupPreference', 'bio']:
             user_format[k] = v
         elif k=='age':
             user_format[k] = int(v)
@@ -141,7 +141,17 @@ def add_user_data():
             print("This is the matched users ", final_matched_users)
         
             # Write the matched users in the second sheet
-            sheet2.append_row([user_key, ','.join(final_matched_users)])
+            # Get a list of all names, ages, and interests
+            names = [users[user]['name'] for user in final_matched_users]
+            ages = [users[user]['age'] for user in final_matched_users]
+            interests = [', '.join(users[user]['interests']) for user in final_matched_users]
+
+            print(names)
+            print(ages)
+            # Write them to the sheet
+            sheet2.append_row(names)
+            sheet2.append_row(ages)
+            sheet2.append_row(interests)
 
 
 while True:
