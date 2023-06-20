@@ -31,26 +31,7 @@ matchmaker.build_graph()
 data = sheet1.get_all_values()
 last_row = data[-1]
 
-# details required for attractions
-query = "coffee"
-location = "37.44638019905392, 140.02647427643814"
-API_KEY = 'AIzaSyBZnCWJ53IDmXJMCvj4EzLxKDN3gB_20O4'
-endpoint_url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json"
-details_url = "https://maps.googleapis.com/maps/api/place/details/json"
-photo_url = "https://maps.googleapis.com/maps/api/place/photo"
-places = []
-
-params = {
-    'location': location,
-    'keyword': query,
-    'key': API_KEY,
-    'rankby': 'distance'
-}
-
-res = requests.get(endpoint_url, params=params)
-results =  json.loads(res.content)
-
-places.extend(results['results'])
+attractions_interests = []
 
 # format user data for DB
 def format_user_data(user_data):
@@ -76,6 +57,18 @@ def add_user_data():
 
     # when a new row is added
     if last_row_new != last_row:
+        # Get the total number of rows
+        num_rows = sheet2.row_count
+
+        # Delete rows from 2 to the end
+        sheet2.delete_rows(2, num_rows)
+
+        # Get the total number of rows
+        num_rows = sheet3.row_count
+
+        # Delete rows from 2 to the end
+        sheet3.delete_rows(2, num_rows)
+
         last_row = last_row_new  # update last_row to the latest one
         new_user_id = len(data) - 1  # -1 because we are considering 0-based indexing
         user_key =  "user" + str(new_user_id)
@@ -86,6 +79,7 @@ def add_user_data():
 
             # format the user data
             user_data = format_user_data(dict(zip(data[0], last_row_new)))
+            attractions_interests.append(user_data["interests"])
             
             # Add the new user to users
             users[user_key] = user_data
@@ -109,6 +103,17 @@ def add_user_data():
             ages = [users[user]['age'] for user in final_matched_users]
             interests = [', '.join(users[user]['interests']) for user in final_matched_users]
 
+            for user in final_matched_users:
+                attractions_interests.append(users[user]['interests'])
+
+            interest_query = []
+
+            if len(attractions_interests[0]) <= 2:
+                interest_query += ' '.join(attractions_interests[0])
+            else:
+                for num in range(len(attractions_interests)):
+                    interest_query += list(set(attractions_interests[0]) & set(attractions_interests[num]))
+
             print(names)
             print(ages)
             # Write them to the sheet
@@ -116,9 +121,30 @@ def add_user_data():
             sheet2.append_row(ages)
             sheet2.append_row(interests)
 
-            add_attractions(results)
+            add_attractions(interest_query)
 
-def add_attractions(results):
+def add_attractions(interest_query):
+    # details required for attractions
+    query = str(set(interest_query))
+    print("The query is ", query)
+    location = "37.44638019905392, 140.02647427643814"
+    API_KEY = 'AIzaSyBZnCWJ53IDmXJMCvj4EzLxKDN3gB_20O4'
+    endpoint_url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json"
+    details_url = "https://maps.googleapis.com/maps/api/place/details/json"
+    photo_url = "https://maps.googleapis.com/maps/api/place/photo"
+    places = []
+
+    params = {
+        'location': location,
+        'keyword': query,
+        'key': API_KEY,
+        'rankby': 'distance'
+    }
+
+    res = requests.get(endpoint_url, params=params)
+    results =  json.loads(res.content)
+
+    places.extend(results['results'])
     while "next_page_token" in results:
         params['pagetoken'] = results['next_page_token'],
         time.sleep(2)  # add delay before next request
