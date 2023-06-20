@@ -1,71 +1,11 @@
-# from flask import Flask, request, jsonify
-# from matchmaker import Matchmaker
-# from generate import users
-# import os
-
-# app = Flask(__name__)
-# matchmaker = Matchmaker(users, "matchmaking_model.pth")
-
-# @app.route('/match', methods=['GET','POST'])
-# def match():
-#     if request.method == 'POST':
-#         print("HI IM POST")
-#         user = request.json['user']
-#         matched_users = matchmaker.graph_matchmaking(user)
-#         print(matched_users)
-#         return jsonify(matched_users)
-#     else:
-#         print("HI IM NOT POST")
-#         user = request.args.get('user')
-#         if user:
-#             matched_users = matchmaker.graph_matchmaking(user)
-#             response = {'matched users': matched_users}
-#             return jsonify(response)
-#         else:
-#             return jsonify({'error': 'Missing user parameter'})
-
-# @app.route('/feedback', methods=['POST'])
-# def feedback():
-#     user = request.json['user']
-#     matched_user = request.json['matched_user']
-#     feedback_score = request.json['feedback_score']
-#     matchmaker.collect_feedback(user, matched_user, feedback_score)
-#     matchmaker.adjust_weights()
-#     return jsonify({'status': 'success'})
-
-# @app.route('/addUser', methods=['POST'])
-# def add_user():
-#     user = request.json['user']
-#     gender = request.json['gender']
-#     age = int(request.json['age'])
-#     interests = request.json['interests']
-#     ageGroupPreference = request.json['ageGroupPreference']
-#     genderPreference = request.json['genderPreference']
-
-#     if user not in users.keys():
-#         print("This is the user: ", str(user))
-#         users[user] = {'gender': gender, 'age': age, 'genderPreference': genderPreference, 'interests': interests, 'vacationType': 'History', 'hotel': 'Hotel 50', 'ageGroupPreference': ageGroupPreference, 'userID': user}
-#         # Change the working directory to the Backend directory
-#         os.chdir(os.path.dirname(os.path.abspath(__file__)))
-#         outFile = open("generate.py","w")
-#         outFile.write("users = %s" % (str(users)))
-#         outFile.close()
-#         matchmaker.add_user_and_update_graph(user)
-#         return jsonify({'status': 'success'})
-#     else:
-#         print("This user id is alr taken! Try another")
-#         return jsonify({'status': '404'})
-
-# if __name__ == '__main__':
-#     matchmaker.build_graph()
-#     app.run(host='0.0.0.0', port=5000, debug=True)
-
 from matchmaker import Matchmaker
 import pandas as pd
 import os
 import ast
 import gspread
 import time
+import json
+import requests
 
 # Get the credentials and create a client to interact with the Google Sheets API
 script_dir = os.path.dirname(os.path.realpath(__file__))
@@ -75,9 +15,10 @@ gc = gspread.service_account(filename='credentials.json')
 # Open the Google Spreadsheet by its ID (the string of random letters and numbers in the URL)
 spreadsheet = gc.open_by_key("10RDxyuBw5ygMn79vQA5aove-bzjDJ9mNWblUO0SK-xw")
 
-# Select the two sheets
+# Initialise the 3 sheets
 sheet1 = spreadsheet.get_worksheet(0)  # users data is in the first sheet
 sheet2 = spreadsheet.get_worksheet(2)  # matched users will be written in the second sheet
+sheet3 = spreadsheet.get_worksheet(3) # attractions
 
 # Load users from generate.py
 with open("generate.py", "r") as infile:
@@ -90,6 +31,28 @@ matchmaker.build_graph()
 data = sheet1.get_all_values()
 last_row = data[-1]
 
+# details required for attractions
+query = "coffee"
+location = "37.44638019905392, 140.02647427643814"
+API_KEY = 'AIzaSyBZnCWJ53IDmXJMCvj4EzLxKDN3gB_20O4'
+endpoint_url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json"
+details_url = "https://maps.googleapis.com/maps/api/place/details/json"
+photo_url = "https://maps.googleapis.com/maps/api/place/photo"
+places = []
+
+params = {
+    'location': location,
+    'keyword': query,
+    'key': API_KEY,
+    'rankby': 'distance'
+}
+
+res = requests.get(endpoint_url, params=params)
+results =  json.loads(res.content)
+
+places.extend(results['results'])
+
+# format user data for DB
 def format_user_data(user_data):
     user_format = {}
     for k, v in user_data.items():
@@ -153,6 +116,69 @@ def add_user_data():
             sheet2.append_row(ages)
             sheet2.append_row(interests)
 
+            add_attractions(results)
+
+def add_attractions(results):
+    while "next_page_token" in results:
+        params['pagetoken'] = results['next_page_token'],
+        time.sleep(2)  # add delay before next request
+        res = requests.get(endpoint_url, params=params)
+        results = json.loads(res.content)
+        places.extend(results['results'])
+
+    closest_places = places[:4]
+    names_list = []
+    ratings_list = []
+    address_list = []
+    summary_list = []
+    price_level_list = []
+    opening_hrs_list = []
+
+    for place in closest_places:
+        place_id = place['place_id']
+        details_params = {
+            'place_id': place_id,
+            'fields': 'name,rating,formatted_address,opening_hours,editorial_summary,price_level,photos',
+            'key': API_KEY
+        }
+        res = requests.get(details_url, params=details_params)
+        result = json.loads(res.content)
+        if result['status'] == 'OK':
+            details = result['result']
+            name = details.get('name', 'No name provided')
+            rating = details.get('rating', 'No rating provided')
+            address = details.get('formatted_address', 'No address provided')
+            summary = details.get('editorial_summary', {'overview': 'No summary provided'}).get('overview', 'No summary provided')
+            opening_hours = details.get('opening_hours', {}).get('weekday_text', ['No opening hours provided'])
+            price_level_num = details.get('price_level', 'No price level provided')
+            if isinstance(price_level_num, int):
+                price_levels = ['Free', 'Inexpensive', 'Moderate', 'Expensive', 'Very Expensive']
+                price_level = price_levels[price_level_num] if price_level_num < len(price_levels) else 'Unknown price level'
+            else:
+                price_level = 'No price level provided'
+            photos = details.get('photos', [])
+            if photos:
+                photo_reference = photos[0]['photo_reference']
+                photo_params = {
+                    'maxwidth': '400',
+                    'photoreference': photo_reference,
+                    'key': API_KEY
+                }
+                photo_request_url = requests.get(photo_url, params=photo_params).url
+
+            names_list.append(name)
+            ratings_list.append(rating)
+            address_list.append(address)
+            summary_list.append(summary)
+            price_level_list.append(price_level)
+            opening_hrs_list.append('\n'.join(opening_hours))
+    
+    sheet3.append_row(names_list)
+    sheet3.append_row(ratings_list)
+    sheet3.append_row(address_list)
+    sheet3.append_row(summary_list)
+    sheet3.append_row(price_level_list)
+    sheet3.append_row(opening_hrs_list)
 
 while True:
     add_user_data()

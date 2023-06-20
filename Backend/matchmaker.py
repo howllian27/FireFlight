@@ -45,6 +45,7 @@ class Matchmaker:
         try:
             shared_interests = set(self.users[user1]["interests"]).intersection(self.users[user2]["interests"])
             if shared_interests:
+                print("Filtering: ", user1, user2)
                 self.graph.add_edge(user1, user2, weight=len(shared_interests))
         except Exception as e:
             print(f"Error adding edge to graph: {e}")
@@ -116,7 +117,7 @@ class Matchmaker:
             bio_similarity = self.bio_comparison.compare_sentences(bio1, bio2)
 
             # Make a prediction using the model and take the mean of the tensor to get a scalar compatibility score
-            print("Tensor is ", self.model(input_tensor).mean().item())
+            print("Tensor is ", self.model(input_tensor), self.model(input_tensor).mean().item())
             compatibility_score = self.model(input_tensor).mean().item() + bio_similarity
 
             print(compatibility_score)
@@ -141,6 +142,7 @@ class Matchmaker:
                 other_user_bio = self.users[other_user]["bio"]
 
                 if self.graph.has_edge(user, other_user):
+                    print("Checking for edge between ", user, other_user)
                     compatibility_score = self.predict_compatibility(
                     user, user_preferences, other_user_preferences, user_interests, other_user_interests, user_bio, other_user_bio
                     )
@@ -195,7 +197,7 @@ class Matchmaker:
 if __name__ == "__main__":
     matchmaker = Matchmaker(users, "matchmaking_model.pth")
     matchmaker.build_graph()
-    user = "user449"  # Select a random user
+    user = "user55"  # Select a random user
     matched_users = matchmaker.graph_matchmaking(user)
     for matched_user in matched_users:
         feedback_score = input(f"How would you rate your match with {matched_user[0]}? (0-1): ")

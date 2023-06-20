@@ -1,76 +1,41 @@
-# from faker import Faker
-# import random
-# import gspread
-# import os
-# import time
-
-# fake = Faker()
-
-# # Define the possible interests and ageGroupPreferences.
-# interests = ["beach", "history", "adventure", "nature", "shopping", "food", "nightlife", "cultural"]
-# ageGroupPreferences = ["18-25", "26-35", "36-45", "46-55", "56+"]
-
-# def generate_user(user_id):
-#     # Randomly generate the data.
-#     name = fake.name()
-#     gender = random.choice(["male", "female"])
-#     age = random.randint(18, 60)
-#     genderPreference = random.choice(["male", "female"])
-#     user_interests = random.sample(interests, random.randint(1, len(interests)))  # At least one interest, could be more
-#     ageGroupPreference = random.choice(ageGroupPreferences)
-
-#     return {
-#         'userID': user_id,
-#         'name': name,
-#         'gender': gender,
-#         'age': age,
-#         'genderPreference': genderPreference,
-#         'interests': ", ".join(user_interests),  # Convert list to comma-separated string.
-#         'ageGroupPreference': ageGroupPreference,
-#         'bio': fake.text()  # Randomly generated text as bio
-#     }
-
-# # Generate the users.
-# users = {}
-# for i in range(1, 501):  # IDs from 1 to 500.
-#     user_id = f"user{i}"
-#     users[user_id] = generate_user(user_id)
-
-# script_dir = os.path.dirname(os.path.realpath(__file__))
-# os.chdir(script_dir)
-# with open("generate.py", "w") as outfile:
-#     outfile.write("users = %s" % users)
-
-# print(users)
-
-# # Assuming you have the credentials file and its path is in your environment variable.
-# gc = gspread.service_account(filename="credentials.json")
-
-# # Open the Google spreadsheet where you want to store the data.
-# spreadsheet = gc.open_by_key("10RDxyuBw5ygMn79vQA5aove-bzjDJ9mNWblUO0SK-xw")
-
-# # Select the first sheet in the spreadsheet.
-# worksheet = spreadsheet.get_worksheet(0)
-
-# # Define the column headers.
-# column_headers = ['userID', 'name', 'gender', 'age', 'genderPreference', 'interests', 'ageGroupPreference', 'bio']
-
-# # Write the column headers to the first row of the spreadsheet.
-# worksheet.append_row(column_headers)
-
-# # Write the user data to the spreadsheet.
-# for user_id, user in users.items():
-#     row = [user[column] for column in column_headers]
-#     worksheet.append_row(row)
-#     time.sleep(1)
 
 from generate import users
 import os
+import requests
+import random
+import time
+import gspread
+from oauth2client.service_account import ServiceAccountCredentials
 
-for user in users:
-    users[user]['interests'] = users[user]["interests"].split(",")
 
 script_dir = os.path.dirname(os.path.realpath(__file__))
 os.chdir(script_dir)
+gc = gspread.service_account(filename='credentials.json')
+
+spreadsheet = gc.open_by_key("10RDxyuBw5ygMn79vQA5aove-bzjDJ9mNWblUO0SK-xw")
+worksheet = spreadsheet.get_worksheet(0)  # assuming we're working on the first worksheet
+
+# Get the total number of columns
+num_cols = len(worksheet.row_values(1))  # gets number of columns by checking the number of values in the first row
+
+def get_random_image_url(keyword):
+    # Replace 'your_access_key' with your actual Unsplash Access Key
+    response = requests.get(f'https://api.unsplash.com/photos/random?query={keyword}&client_id=NEF2IgZ7OayWZnMJGb9HbKua-ru5623fRuKS6L6oFt4')
+    data = response.json()
+    print(data['urls']['small'])
+    return data['urls']['small']  # Return the URL of a smaller version of the image for efficiency
+
+for user_id, user_data in users.items():
+    if user_data['gender'] == 'male':
+        user_data['profile_pic'] = get_random_image_url('man')
+    elif user_data['gender'] == 'female':
+        user_data['profile_pic'] = get_random_image_url('woman')
+    worksheet.append_row([user_data['name'], user_data['gender'], user_data['age'], user_data['genderPreference'],
+                          ','.join(user_data['interests']), user_data['ageGroupPreference'], user_data['bio'], user_data['profile_pic']])
+    time.sleep(5)
+
+data = [[user_data['profile_pic']] for user_data in users.values()]
 with open("generate.py", "w") as outfile:
     outfile.write("users = %s" % users)
+
+worksheet.append_row

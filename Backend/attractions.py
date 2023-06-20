@@ -4,7 +4,7 @@ import time
 import webbrowser
 
 query = "coffee"
-location = "47.606,-122.349358"
+location = "37.44638019905392, 140.02647427643814"
 API_KEY = 'AIzaSyBZnCWJ53IDmXJMCvj4EzLxKDN3gB_20O4'  # replace with your actual API key
 endpoint_url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json"
 details_url = "https://maps.googleapis.com/maps/api/place/details/json"
@@ -22,6 +22,8 @@ res = requests.get(endpoint_url, params=params)
 results =  json.loads(res.content)
 
 places.extend(results['results'])
+
+attractions = {}
 
 while "next_page_token" in results:
     params['pagetoken'] = results['next_page_token'],
@@ -42,6 +44,11 @@ for place in places:
     if result['status'] == 'OK':
         details = result['result']
         name = details.get('name', 'No name provided')
+
+        # Initialize a new dictionary for the attraction if it does not already exist
+        if name not in attractions:
+            attractions[name] = {}
+
         rating = details.get('rating', 'No rating provided')
         address = details.get('formatted_address', 'No address provided')
         summary = details.get('editorial_summary', {'overview': 'No summary provided'})
@@ -61,11 +68,14 @@ for place in places:
                 'key': API_KEY
             }
             photo_request_url = requests.get(photo_url, params=photo_params).url
-            webbrowser.open(photo_request_url)
-        print(f"Name: {name}\nRating: {rating}\nAddress: {address}")
-        print(f"Summary: {summary['overview']}")
-        print(f"Price Level: {price_level}")
+            # webbrowser.open(photo_request_url)
+            attractions[name]["photo_url"] = photo_request_url
+        attractions[name]["summary"] = summary
+        attractions[name]["price level"] = price_level
+        attractions[name]["rating"] = rating
+        attractions[name]["address"] = address
+
+        print(attractions)
         print("Opening Hours:")
         for opening_hour in opening_hours:
             print(opening_hour)
-        print("\n")
