@@ -30,8 +30,14 @@
   <kbd>
       <img height="60" src="./assets/bert.png">
   </kbd>
+  <kbd>
+      <img height="60" src="./assets/docker.png">
+  </kbd>
+  <kbd>
+      <img height="60" src="./assets/aws.png">
+  </kbd>
   <br></br>
-  <b> MySQL | PyTorch | Google Maps | NetworkX | BERT | </b>
+  <b> MySQL | PyTorch | Google Maps | NetworkX | BERT | Docker | AWS </b>
 </p>
 </div>
 <p>&nbsp;</p>
