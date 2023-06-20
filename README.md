@@ -22,16 +22,16 @@
       <img height="60" src="./assets/pytorch.png">
   </kbd>
   <kbd>
-      <img height="60" src="./assets/scikit.png">
+      <img height="60" src="./assets/maps.png">
   </kbd>
   <kbd>
       <img height="60" src="./assets/networkX.png">
   </kbd>
   <kbd>
-      <img height="60" src="./assets/foursquare.png">
+      <img height="60" src="./assets/bert.png">
   </kbd>
   <br></br>
-  <b> MySQL | PyTorch | Scikit-Learn | NetworkX | Foursquare </b>
+  <b> MySQL | PyTorch | Google Maps | NetworkX | BERT | </b>
 </p>
 </div>
 <p>&nbsp;</p>
