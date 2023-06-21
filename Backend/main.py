@@ -71,6 +71,7 @@ def add_user_data():
         if num_rows > 1:
             # Delete rows from 2 to the end
             sheet3.delete_rows(2, num_rows)
+            print("Sheet3 ROWS DELETED")
 
         last_row = last_row_new  # update last_row to the latest one
         new_user_id = len(data) - 1  # -1 because we are considering 0-based indexing
@@ -130,6 +131,7 @@ def add_attractions(interest_query, destination):
     query = set(interest_query)
     print("The query is ", query)
     location = get_coordinates(destination)
+    print("the location is ", location)
     API_KEY = 'AIzaSyBZnCWJ53IDmXJMCvj4EzLxKDN3gB_20O4'
     endpoint_url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json"
     details_url = "https://maps.googleapis.com/maps/api/place/details/json"
