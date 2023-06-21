@@ -1,4 +1,5 @@
 from matchmaker import Matchmaker
+from geopy.geocoders import Nominatim
 import pandas as pd
 import os
 import ast
@@ -37,7 +38,7 @@ attractions_interests = []
 def format_user_data(user_data):
     user_format = {}
     for k, v in user_data.items():
-        if k in ['name', 'ageGroupPreference', 'bio']:
+        if k in ['name', 'ageGroupPreference', 'bio', 'hotel']:
             user_format[k] = v
         elif k=='age':
             user_format[k] = int(v)
@@ -61,13 +62,15 @@ def add_user_data():
         num_rows = sheet2.row_count
 
         # Delete rows from 2 to the end
-        sheet2.delete_rows(2, num_rows)
+        if num_rows > 1:
+            sheet2.delete_rows(2, num_rows)
 
         # Get the total number of rows
         num_rows = sheet3.row_count
 
-        # Delete rows from 2 to the end
-        sheet3.delete_rows(2, num_rows)
+        if num_rows > 1:
+            # Delete rows from 2 to the end
+            sheet3.delete_rows(2, num_rows)
 
         last_row = last_row_new  # update last_row to the latest one
         new_user_id = len(data) - 1  # -1 because we are considering 0-based indexing
@@ -83,6 +86,8 @@ def add_user_data():
             
             # Add the new user to users
             users[user_key] = user_data
+            hotel = users[user_key]['hotel']
+            print(hotel)
 
             # Update the generate.py file with the new user
             with open("generate.py", "w") as outfile:
@@ -99,9 +104,8 @@ def add_user_data():
         
             # Write the matched users in the second sheet
             # Get a list of all names, ages, and interests
-            names = [users[user]['name'] for user in final_matched_users]
-            ages = [users[user]['age'] for user in final_matched_users]
-            interests = [', '.join(users[user]['interests']) for user in final_matched_users]
+            names = [f"{users[user]['name']} ({users[user]['age']})" for user in final_matched_users]
+            interests = [', '.join(users[user]['interests']).title() for user in final_matched_users]
 
             for user in final_matched_users:
                 attractions_interests.append(users[user]['interests'])
@@ -114,25 +118,25 @@ def add_user_data():
                 for num in range(len(attractions_interests)):
                     interest_query += list(set(attractions_interests[0]) & set(attractions_interests[num]))
 
-            print(names)
-            print(ages)
             # Write them to the sheet
             sheet2.append_row(names)
-            sheet2.append_row(ages)
             sheet2.append_row(interests)
 
-            add_attractions(interest_query)
+            add_attractions(interest_query, hotel)
 
-def add_attractions(interest_query):
+def add_attractions(interest_query, destination):
     # details required for attractions
-    query = str(set(interest_query))
+    print(interest_query)
+    query = set(interest_query)
     print("The query is ", query)
-    location = "37.44638019905392, 140.02647427643814"
+    location = get_coordinates(destination)
     API_KEY = 'AIzaSyBZnCWJ53IDmXJMCvj4EzLxKDN3gB_20O4'
     endpoint_url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json"
     details_url = "https://maps.googleapis.com/maps/api/place/details/json"
     photo_url = "https://maps.googleapis.com/maps/api/place/photo"
     places = []
+
+    print(places)
 
     params = {
         'location': location,
@@ -206,6 +210,21 @@ def add_attractions(interest_query):
     sheet3.append_row(price_level_list)
     sheet3.append_row(opening_hrs_list)
 
+def get_coordinates(location):
+    geolocator = Nominatim(user_agent="my-app")
+    location_data = geolocator.geocode(location)
+    
+    if location_data:
+        latitude = location_data.latitude
+        longitude = location_data.longitude
+        print(f"Coordinates for '{location}':")
+        print(f"Latitude: {latitude}")
+        print(f"Longitude: {longitude}")
+        return f"{latitude}, {longitude}"
+    else:
+        print(f"Coordinates not found for '{location}'")
+        return "37.44638019905392, 140.02647427643814"
+
 while True:
     add_user_data()
-    time.sleep(1)
+    time.sleep(2)

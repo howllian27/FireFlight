@@ -113,11 +113,11 @@ class Matchmaker:
             input_data = user_preferences_encoded + other_user_preferences_encoded + user_interests_encoded + other_user_interests_encoded + [potential_connections]
             input_tensor = torch.tensor([input_data], dtype=torch.float32)
 
+            print("Tensor is ", self.model(input_tensor), self.model(input_tensor).mean().item())
             # get bio_comparison
             bio_similarity = self.bio_comparison.compare_sentences(bio1, bio2)
 
             # Make a prediction using the model and take the mean of the tensor to get a scalar compatibility score
-            print("Tensor is ", self.model(input_tensor), self.model(input_tensor).mean().item())
             compatibility_score = self.model(input_tensor).mean().item() + bio_similarity
 
             print(compatibility_score)
