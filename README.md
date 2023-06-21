@@ -59,7 +59,7 @@
 <img height="300" src="./assets/mockups/chat.png">
 <p>Our chat platform allows matched users to communicate with each other prior to the trip. It also has built-in real-time translation to connect users from different countries speaking different languages. For quick travel inqueries, users may also use our travel chatbot powered by ChatGPT. </p>
 <h1> Enterprise Architecture </h1>
-<img height = "450" src="./assets/arch.png">
+<img height = "400" src="./assets/arch.png">
 <p><b>1. Presentation Layer </b></p>
 <p>The presentation layer refers to the user interface of the application, including the mobile app or website that travelers interact with. It aims to provide a seamless and user-friendly experience for solo travelers to connect with potential companions.</p>
 <p><b>2. Storage Layer </b></p>
