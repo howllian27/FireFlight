@@ -113,7 +113,7 @@ def add_user_data():
             interest_query = []
 
             if len(attractions_interests[0]) <= 2:
-                interest_query += ' '.join(attractions_interests[0])
+                interest_query.append(' '.join(attractions_interests[0]))
             else:
                 for num in range(len(attractions_interests)):
                     interest_query += list(set(attractions_interests[0]) & set(attractions_interests[num]))
