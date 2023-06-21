@@ -58,5 +58,16 @@
 <p><b>3. Chat Platform with Real-Time Translation & Travel Chatbot </b></p>
 <img height="300" src="./assets/mockups/chat.png">
 <p>Our chat platform allows matched users to communicate with each other prior to the trip. It also has built-in real-time translation to connect users from different countries speaking different languages. For quick travel inqueries, users may also use our travel chatbot powered by ChatGPT. </p>
-<h1> Getting Started </h1>
+<h1> Enterprise Architecture </h1>
+<img height = "450" src="./assets/arch.png">
+<p><b>1. Presentation Layer </b></p>
+<p>The presentation layer refers to the user interface of the application, including the mobile app or website that travelers interact with. It aims to provide a seamless and user-friendly experience for solo travelers to connect with potential companions.</p>
+<p><b>2. Storage Layer </b></p>
+<p>The storage layer in FireFlight encompasses the databases and cloud storage solutions used to store user profiles, preferences, and other relevant data. It ensures secure and efficient storage and retrieval of information to support the application's functionalities.</p>
+<p><b>3. Data Access Layer </b></p>
+<p>The data access layer in FireFlight manages the interaction between the application and the underlying data sources. It includes components like APIs, database connectors, and data access patterns that allow the application to retrieve and update user data from storage.</p>
+<p><b>4. Machine Learning Layer</b></p>
+<p>The ML layer in FireFlight incorporates machine learning algorithms and models to enhance the matching and recommendation capabilities of the application. It leverages user preferences, interests, and other relevant data to provide personalized suggestions for travel companions.</p>
+<p><b>5. CI/CD Pipeline</b></p>
+<p>The CI/CD pipeline for FireFlight automates the software development and deployment processes. It includes steps like code integration, automated testing, and continuous deployment to ensure a smooth and efficient development workflow. The CI/CD pipeline allows for frequent updates and enhancements to the application while maintaining its stability and reliability.</p>
 <h1> The Team </h1>
