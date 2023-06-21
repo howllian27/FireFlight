@@ -59,14 +59,15 @@ def add_user_data():
     # when a new row is added
     if last_row_new != last_row:
         # Get the total number of rows
-        num_rows = sheet2.row_count
+        num_rows = len(sheet2.get_all_values())
 
         # Delete rows from 2 to the end
         if num_rows > 1:
             sheet2.delete_rows(2, num_rows)
 
         # Get the total number of rows
-        num_rows = sheet3.row_count
+        num_rows = len(sheet3.get_all_values())
+        print("The no. of rows is ", num_rows)
 
         if num_rows > 1:
             # Delete rows from 2 to the end
@@ -116,12 +117,15 @@ def add_user_data():
             if len(attractions_interests[0]) <= 2:
                 interest_query.append(' '.join(attractions_interests[0]))
             else:
-                for num in range(len(attractions_interests)):
+                for num in range(1,len(attractions_interests)):
                     interest_query += list(set(attractions_interests[0]) & set(attractions_interests[num]))
 
             # Write them to the sheet
             sheet2.append_row(names)
             sheet2.append_row(interests)
+
+            if len(interest_query)>3:
+                interest_query = interest_query[:3]
 
             add_attractions(interest_query, hotel)
 
@@ -138,27 +142,30 @@ def add_attractions(interest_query, destination):
     photo_url = "https://maps.googleapis.com/maps/api/place/photo"
     places = []
 
-    print(places)
 
-    params = {
-        'location': location,
-        'keyword': query,
-        'key': API_KEY,
-        'rankby': 'distance'
-    }
+    count = 0
+    while places == []:
+        if count == 1:
+            places.pop()
+        params = {
+            'location': location,
+            'keyword': query,
+            'key': API_KEY,
+            'rankby': 'distance'
+        }
 
-    res = requests.get(endpoint_url, params=params)
-    results =  json.loads(res.content)
-
-    places.extend(results['results'])
-    while "next_page_token" in results:
-        params['pagetoken'] = results['next_page_token'],
-        time.sleep(2)  # add delay before next request
         res = requests.get(endpoint_url, params=params)
-        results = json.loads(res.content)
+        results =  json.loads(res.content)
         places.extend(results['results'])
+        while "next_page_token" in results:
+            params['pagetoken'] = results['next_page_token'],
+            time.sleep(2)  # add delay before next request
+            res = requests.get(endpoint_url, params=params)
+            results = json.loads(res.content)
+            places.extend(results['results'])
+        count+=1
 
-    closest_places = places[:4]
+    closest_places = places[:10]
     names_list = []
     ratings_list = []
     address_list = []
@@ -225,8 +232,9 @@ def get_coordinates(location):
         return f"{latitude}, {longitude}"
     else:
         print(f"Coordinates not found for '{location}'")
-        return "37.44638019905392, 140.02647427643814"
+        return "37.4, 140.0"
 
+add_attractions(["shopping", "beach"], "limneon hotel")
 while True:
     add_user_data()
     time.sleep(2)
