@@ -53,8 +53,13 @@ def format_user_data(user_data):
 def add_user_data():
     global last_row
     # get the updated data from the first sheet
-    data = sheet1.get_all_values()
-    last_row_new = data[-1]
+    while True:
+        try:
+            data = sheet1.get_all_values()
+            last_row_new = data[-1]
+            break
+        except:
+            time.sleep(2)
 
     # when a new row is added
     if last_row_new != last_row:
@@ -126,8 +131,13 @@ def add_user_data():
 
             if len(interest_query)>3:
                 interest_query = interest_query[:3]
-
-            add_attractions(interest_query, hotel)
+            
+            while True:
+                try:
+                    add_attractions(interest_query, hotel)
+                    break
+                except:
+                    time.sleep(2)
 
 def add_attractions(interest_query, destination):
     # details required for attractions
@@ -235,6 +245,7 @@ def get_coordinates(location):
         return "37.4, 140.0"
 
 add_attractions(["shopping", "beach"], "limneon hotel")
+
 while True:
     add_user_data()
     time.sleep(2)
