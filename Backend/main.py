@@ -114,6 +114,8 @@ def add_user_data():
             names = [f"{users[user]['name']} ({users[user]['age']})" for user in final_matched_users]
             interests = [', '.join(users[user]['interests']).title() for user in final_matched_users]
 
+            attractions_interests.append(users[user_key]['interests'])
+
             for user in final_matched_users:
                 attractions_interests.append(users[user]['interests'])
 
@@ -216,7 +218,7 @@ def add_attractions(interest_query, destination):
                 photo_request_url = requests.get(photo_url, params=photo_params).url
 
             names_list.append(name)
-            ratings_list.append(rating)
+            ratings_list.append(f"Rating: {rating}/5")
             address_list.append(address)
             summary_list.append(summary)
             price_level_list.append(price_level)
