@@ -45,7 +45,7 @@
 <p>&nbsp;</p>
 <h1>🔨 Core Functionalities </h1>
 <p><b>1. User Profiles</b></p>
-<img height="300" src="./assets/mockups/profile_creation.png">
+<img height="500" src="./assets/mockups/profile_creation.png">
 <p>Users can create personalized profiles, including a self-made bio to introduce themselves. Our matchmaking algorithm will subsequently compare this bio to other users' bios to find the most compatible travel companions for our users. </p>
 <img height="300" src="./assets/mockups/interests.png">
 <p>Users may also indicate their own personal interests, such that they may be matched with other users based on common interests.</p>
