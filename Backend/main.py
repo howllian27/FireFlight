@@ -127,6 +127,7 @@ def add_user_data():
                 for num in range(1,len(attractions_interests)):
                     interest_query += list(set(attractions_interests[0]) & set(attractions_interests[num]))
 
+            print("The interest query is: ", interest_query)
             # Write them to the sheet
             sheet2.append_row(names)
             sheet2.append_row(interests)
