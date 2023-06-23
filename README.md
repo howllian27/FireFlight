@@ -59,15 +59,15 @@
 <h1> Our Enterprise Architecture </h1>
 <img height = "400" src="./assets/arch.png">
 <p><b>1. Presentation Layer </b></p>
-<p>The presentation layer refers to the user interface of the application, including the mobile app or website that travelers interact with. It aims to provide a seamless and user-friendly experience for solo travelers to connect with potential companions.</p>
+<p>The presentation layer refers to the user interface of the application, including the website that travelers interact with. It aims to provide a seamless and user-friendly experience for solo travelers to connect with potential companions. We have also infused a storyline with engaging and interactive animations to enhance the customer journey. </p>
 <p><b>2. Storage Layer </b></p>
-<p>The storage layer in FireFlight encompasses the databases and cloud storage solutions used to store user profiles, preferences, and other relevant data. It ensures secure and efficient storage and retrieval of information to support the application's functionalities.</p>
+<p>The storage layer in FireFlight encompasses the MySQL database used to store user profiles, preferences, and other relevant data. It ensures secure and efficient storage and retrieval of information to support the application's functionalities.</p>
 <p><b>3. Data Access Layer </b></p>
-<p>The data access layer in FireFlight manages the interaction between the application and the underlying data sources. It includes components like APIs, database connectors, and data access patterns that allow the application to retrieve and update user data from storage.</p>
+<p>The data access layer in FireFlight manages the interaction between the application and the underlying data sources. It includes components like APIs, database connectors, and data access patterns that allow the application to retrieve and update user data from storage. We mainly use NetworkX to add users to a graph and calculate correlations in interests from there. In processing map data, we used the Google Maps API to find the closest relevant attractions for the user to visit. </p>
 <p><b>4. Machine Learning Layer</b></p>
-<p>The ML layer in FireFlight incorporates machine learning algorithms and models to enhance the matching and recommendation capabilities of the application. It leverages user preferences, interests, and other relevant data to provide personalized suggestions for travel companions.</p>
+<p>The ML layer in FireFlight incorporates a thorough machine learning algorithm and model created with the aid of PyTorch to enhance the matching and recommendation capabilities of the application. It leverages user preferences, interests, and other relevant data to provide personalized suggestions for travel companions. Furthermore, we also utilised the BERT model to analyse compatabitility through user sentiments and speech patterns in their bios and thereby match them with other users. The combined effect of both the ML algorithm & model as well as the BERT model allow us to calculate a compatibility score between a pair of users, a score deeply enhanced by analysing user data. </p>
 <p><b>5. CI/CD Pipeline</b></p>
-<p>The CI/CD pipeline for FireFlight automates the software development and deployment processes. It includes steps like code integration, automated testing, and continuous deployment to ensure a smooth and efficient development workflow. The CI/CD pipeline allows for frequent updates and enhancements to the application while maintaining its stability and reliability.</p>
+<p>The CI/CD pipeline implemented for your project utilizes the integration between GitHub, AWS EC2, and Docker to enable a streamlined software delivery process. It involves code development and version control on GitHub, automated builds and tests through CI, containerization with Docker, and deployment to AWS EC2 instances. The pipeline ensures continuous delivery of reliable and scalable applications, empowering efficient development and deployment workflows.</p>
 <h1> Our User Flow Chart </h1>
 <img height = "700" src="./assets/user_flow_chart.png">
 <h1> The Team </h1>
