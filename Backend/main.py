@@ -32,8 +32,6 @@ matchmaker.build_graph()
 data = sheet1.get_all_values()
 last_row = data[-1]
 
-attractions_interests = []
-
 # format user data for DB
 def format_user_data(user_data):
     user_format = {}
@@ -89,6 +87,7 @@ def add_user_data():
 
             # format the user data
             user_data = format_user_data(dict(zip(data[0], last_row_new)))
+            attractions_interests = []
             attractions_interests.append(user_data["interests"])
             
             # Add the new user to users
@@ -246,8 +245,6 @@ def get_coordinates(location):
     else:
         print(f"Coordinates not found for '{location}'")
         return "37.4, 140.0"
-
-add_attractions(["shopping", "beach"], "limneon hotel")
 
 while True:
     add_user_data()
