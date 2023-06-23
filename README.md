@@ -46,9 +46,7 @@
 <h1>🔨 Core Functionalities </h1>
 <p><b>1. User Profiles</b></p>
 <img height="500" src="./assets/mockups/profile_creation.png">
-<p>Users can create personalized profiles, including a self-made bio to introduce themselves. Our matchmaking algorithm will subsequently compare this bio to other users' bios to find the most compatible travel companions for our users. </p>
-<img height="300" src="./assets/mockups/interests.png">
-<p>Users may also indicate their own personal interests, such that they may be matched with other users based on common interests.</p>
+<p>Users can create personalized profiles, including a self-made bio to introduce themselves. Our matchmaking algorithm will subsequently compare this bio to other users' bios to find the most compatible travel companions for our users. Users may also indicate their own personal interests, such that they may be matched with other users based on common interests.</p>
 <p><b>2. Matchmaking Algorithm</b></p>
 <img height="300" src="./assets/mockups/matches.png">
 <p>Fireflight uses a sophisticated matchmaking algorithm that takes into account user preferences, shared interests, and other factors to suggest potential matches. The algorithm leverages machine learning and natural language processing to provide highly customised match suggestions.</p>
@@ -58,7 +56,7 @@
 <p><b>3. Chat Platform with Real-Time Translation & Travel Chatbot </b></p>
 <img height="300" src="./assets/mockups/chat.png">
 <p>Our chat platform allows matched users to communicate with each other prior to the trip. It also has built-in real-time translation to connect users from different countries speaking different languages. For quick travel inqueries, users may also use our travel chatbot powered by ChatGPT. </p>
-<h1> Enterprise Architecture </h1>
+<h1> Our Enterprise Architecture </h1>
 <img height = "400" src="./assets/arch.png">
 <p><b>1. Presentation Layer </b></p>
 <p>The presentation layer refers to the user interface of the application, including the mobile app or website that travelers interact with. It aims to provide a seamless and user-friendly experience for solo travelers to connect with potential companions.</p>
@@ -70,4 +68,26 @@
 <p>The ML layer in FireFlight incorporates machine learning algorithms and models to enhance the matching and recommendation capabilities of the application. It leverages user preferences, interests, and other relevant data to provide personalized suggestions for travel companions.</p>
 <p><b>5. CI/CD Pipeline</b></p>
 <p>The CI/CD pipeline for FireFlight automates the software development and deployment processes. It includes steps like code integration, automated testing, and continuous deployment to ensure a smooth and efficient development workflow. The CI/CD pipeline allows for frequent updates and enhancements to the application while maintaining its stability and reliability.</p>
+<h1> Our User Flow Chart </h1>
+<img height = "700" src="./assets/user_flow_chart.png">
 <h1> The Team </h1>
+<table>
+  <tr>
+    <th><img width="180px" src="./assets/pics/howell.png"></th>
+    <th><img width="180px" src="./assets/pics/eunice.jpg"></th>
+    <th><img width="180px" src="./assets/pics/cl.jpg"></th>
+    <th><img width="180px" src="./assets/pics/wei_hong.png"></th>
+  </tr>
+  <tr>
+    <td align="center"><h3><b><a href="https://github.com/howllian27">Howell Chan</a></b></h3><p><i>Nanyang Technological University</i></p></td>
+    <td align="center"><h3><b><a href="https://github.com/XeuniceX">Eunice Lee</a></b></h3><p><i>Nanyang Technological University</i></p></td>
+    <td align="center"><h3><b><a href="https://github.com/chenglin2003">Cheng Lin</a></b></h3><p><i>Nanyang Technological University</i></p></td>
+    <td align="center"><h3><b><a href="https://github.com/tayweihong">Tay Wei Hong</a></b></h3><p><i>Nanyang Technological University</i></p></td>
+  </tr>
+  <tr>
+    <td align="center"><h3><b><p>Lead Backend Developer</p></b></h3></td>
+    <td align="center"><h3><b><p>Lead Frontend Developer</p></b></h3></td>
+    <td align="center"><h3><b><p>Lead UI/UX Designer</p></b></h3></td>
+    <td align="center"><h3><b><p>Lead Video Editor</p></b></h3></td>
+  </tr>
+</table>
