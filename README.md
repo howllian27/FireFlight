@@ -69,7 +69,7 @@
 <p><b>5. CI/CD Pipeline</b></p>
 <p>The CI/CD pipeline for FireFlight automates the software development and deployment processes. It includes steps like code integration, automated testing, and continuous deployment to ensure a smooth and efficient development workflow. The CI/CD pipeline allows for frequent updates and enhancements to the application while maintaining its stability and reliability.</p>
 <h1> Our User Flow Chart </h1>
-<img height = "600" src="./assets/user_flow_chart.png">
+<img height = "700" src="./assets/user_flow_chart.png">
 <h1> The Team </h1>
 <table>
   <tr>
