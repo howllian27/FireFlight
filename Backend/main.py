@@ -62,11 +62,15 @@ def add_user_data():
     # when a new row is added
     if last_row_new != last_row:
         # Get the total number of rows
-        num_rows = len(sheet2.get_all_values())
-
-        # Delete rows from 2 to the end
-        if num_rows > 1:
-            sheet2.delete_rows(2, num_rows)
+        while True:
+            try:
+                num_rows = len(sheet2.get_all_values())
+                # Delete rows from 2 to the end
+                if num_rows > 1:
+                    sheet2.delete_rows(2, num_rows)
+                break
+            except:
+                continue
 
         # Get the total number of rows
         while True:
