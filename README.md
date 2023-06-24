@@ -42,6 +42,7 @@
 </div>
 <p>&nbsp;</p>
 <h1>📽️ Demo Video </h1>
+<img height="500" src="./assets/mockups/home.png">
 <p>&nbsp;</p>
 <h1>🔨 Core Functionalities </h1>
 <p><b>1. User Profiles</b></p>
