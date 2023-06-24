@@ -86,9 +86,9 @@
     <td align="center"><h3><b><a href="https://github.com/tayweihong">Tay Wei Hong</a></b></h3><p><i>Nanyang Technological University</i></p></td>
   </tr>
   <tr>
-    <td align="center"><h3><b><p>Lead Backend Developer</p></b></h3></td>
-    <td align="center"><h3><b><p>Lead Frontend Developer</p></b></h3></td>
-    <td align="center"><h3><b><p>Lead UI/UX Designer</p></b></h3></td>
-    <td align="center"><h3><b><p>Lead Video Editor</p></b></h3></td>
+    <td align="center"><h3><b><p>Backend Developer</p></b></h3></td>
+    <td align="center"><h3><b><p>Frontend Developer</p></b></h3></td>
+    <td align="center"><h3><b><p>UI/UX Designer</p></b></h3></td>
+    <td align="center"><h3><b><p>Web API Developer</p></b></h3></td>
   </tr>
 </table>
