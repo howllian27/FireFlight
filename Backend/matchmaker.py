@@ -9,6 +9,7 @@ import torch
 import os
 
 class Matchmaker:
+    # Initialise Matchmaker class
     def __init__(self, users, model_path):
         self.users = users
         self.graph = nx.Graph()
@@ -25,6 +26,7 @@ class Matchmaker:
             print(f"Error loading model: {e}")
             raise
     
+    # Load MatchmakingModel
     def load_model(self):
         try:
             self.model = MatchmakingModel(31, 64, 8)
@@ -34,6 +36,7 @@ class Matchmaker:
             print(f"Error loading model: {e}")
             raise
 
+    # Add users to graph
     def add_user_to_graph(self, user):
         try:
             self.graph.add_node(user)
@@ -41,6 +44,7 @@ class Matchmaker:
             print(f"Error adding user to graph: {e}")
             raise
 
+    # Add edges between users using filtering criteria
     def add_edge_to_graph(self, user1, user2):
         try:
             shared_interests = set(self.users[user1]["interests"]).intersection(self.users[user2]["interests"])
@@ -51,11 +55,13 @@ class Matchmaker:
             print(f"Error adding edge to graph: {e}")
             raise
 
+    # Format age string
     def age_format(self, age_group_preference):
         if age_group_preference == "56+":
             age_group_preference = "56-100"
         return age_group_preference
 
+    # Filtering criteria
     def basic_filtering(self, user, other_user):
         try:
             if (user["genderPreference"] != other_user["gender"]) or (user["gender"] != other_user["genderPreference"]):
