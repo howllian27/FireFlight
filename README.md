@@ -10,7 +10,7 @@
 </p>
 <p>&nbsp;</p>
 <h1 align="center">📖 A Guide to FireFlight </h1>
-<p> <b> FireFlight </b>  is an application that aspires to bring a fresh perspective to the travel and aviation industry. Our platform is designed to connect like-minded travelers, fostering a community that shares a passion for exploration and adventure. With Fireflight, users can find their perfect travel companion, making their journey more enjoyable and memorable. </p>
+<p> <b> FireFlight </b>  is an application that aspires to bring a fresh perspective to the travel and aviation industry. Our platform is designed to connect like-minded travelers, fostering a community that shares a passion for exploration and adventure. With Fireflight, users can find their perfect travel companion, making their journey more enjoyable and memorable. Click <a href="http://fireflightapp.com/">here</a> to visit our website! </a> </p>
 <p>&nbsp;</p>
 <h1>⚙️ Technology Stack </h1>
 <div align="center">
@@ -42,6 +42,7 @@
 </div>
 <p>&nbsp;</p>
 <h1>📽️ Demo Video </h1>
+<img height="500" src="./assets/mockups/home.png">
 <p>&nbsp;</p>
 <h1>🔨 Core Functionalities </h1>
 <p><b>1. User Profiles</b></p>
@@ -53,7 +54,7 @@
 <p><b>3. Shared Travel Platform</b></p>
 <img height="300" src="./assets/mockups/attractions.png">
 <p>Our application acts as not only one that connects like-minded travelers together but also a one-stop platform where travelers can even make future plans for their trips. Once potential matches are formed, users can connect to each other within the app and a recommendation engine will recommend a series of attractions to the matched users. The attractions will be recommended based on their proximity from each of their hotels and shared interests.</p>
-<p><b>3. Chat Platform with Real-Time Translation & Travel Chatbot </b></p>
+<p><b>3. Chat Platform with Real-Time Translation & Travel Chatbot (In Development) </b></p>
 <img height="300" src="./assets/mockups/chat.png">
 <p>Our chat platform allows matched users to communicate with each other prior to the trip. It also has built-in real-time translation to connect users from different countries speaking different languages. For quick travel inqueries, users may also use our travel chatbot powered by ChatGPT. </p>
 <h1> Our Enterprise Architecture </h1>
@@ -85,9 +86,9 @@
     <td align="center"><h3><b><a href="https://github.com/tayweihong">Tay Wei Hong</a></b></h3><p><i>Nanyang Technological University</i></p></td>
   </tr>
   <tr>
-    <td align="center"><h3><b><p>Lead Backend Developer</p></b></h3></td>
-    <td align="center"><h3><b><p>Lead Frontend Developer</p></b></h3></td>
-    <td align="center"><h3><b><p>Lead UI/UX Designer</p></b></h3></td>
-    <td align="center"><h3><b><p>Lead Video Editor</p></b></h3></td>
+    <td align="center"><h3><b><p>Backend Developer</p></b></h3></td>
+    <td align="center"><h3><b><p>Frontend Developer</p></b></h3></td>
+    <td align="center"><h3><b><p>UI/UX Designer</p></b></h3></td>
+    <td align="center"><h3><b><p>Web API Developer</p></b></h3></td>
   </tr>
 </table>
