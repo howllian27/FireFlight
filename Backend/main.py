@@ -120,6 +120,8 @@ def add_user_data():
             # Get a list of all names, ages, and interests
             names = [f"{users[user]['name']} ({users[user]['age']})" for user in final_matched_users]
             interests = [', '.join(users[user]['interests']).title() for user in final_matched_users]
+            print("Names list is ", names)
+            print("Interests list is ", interests)
 
             attractions_interests.append(users[user_key]['interests'])
 
