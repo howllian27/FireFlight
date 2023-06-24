@@ -134,8 +134,11 @@ def add_user_data():
             if len(interest_query)>3:
                 interest_query = interest_query[:3]
             
-            while True:
+            count = 0
+            while count <= 3:
                 try:
+                    if count == 3:
+                        add_attractions(["food"], hotel)
                     add_attractions(interest_query, hotel)
                     break
                 except:
