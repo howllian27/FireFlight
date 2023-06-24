@@ -10,7 +10,7 @@
 </p>
 <p>&nbsp;</p>
 <h1 align="center">📖 A Guide to FireFlight </h1>
-<p> <b> FireFlight </b>  is an application that aspires to bring a fresh perspective to the travel and aviation industry. Our platform is designed to connect like-minded travelers, fostering a community that shares a passion for exploration and adventure. With Fireflight, users can find their perfect travel companion, making their journey more enjoyable and memorable. <a href="http://fireflightapp.com/"> </a>Click here to visit our website! </a> </p>
+<p> <b> FireFlight </b>  is an application that aspires to bring a fresh perspective to the travel and aviation industry. Our platform is designed to connect like-minded travelers, fostering a community that shares a passion for exploration and adventure. With Fireflight, users can find their perfect travel companion, making their journey more enjoyable and memorable. Click <a href="http://fireflightapp.com/">here</a> to visit our website! </a> </p>
 <p>&nbsp;</p>
 <h1>⚙️ Technology Stack </h1>
 <div align="center">
