@@ -120,8 +120,6 @@ def add_user_data():
             # Get a list of all names, ages, and interests
             names = [f"{users[user]['name']} ({users[user]['age']})" for user in final_matched_users]
             interests = [', '.join(users[user]['interests']).title() for user in final_matched_users]
-            print("Names list is ", names)
-            print("Interests list is ", interests)
 
             attractions_interests.append(users[user_key]['interests'])
 
@@ -138,7 +136,9 @@ def add_user_data():
 
             print("The interest query is: ", interest_query)
             # Write them to the sheet
+            print("Names list is ", names)
             sheet2.append_row(names)
+            print("Interests list is ", interests)
             sheet2.append_row(interests)
 
             if len(interest_query)>3:
