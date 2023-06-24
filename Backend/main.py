@@ -140,6 +140,7 @@ def add_user_data():
                     if count == 3:
                         add_attractions(["food"], hotel)
                     add_attractions(interest_query, hotel)
+                    count += 1
                     break
                 except:
                     time.sleep(2)
