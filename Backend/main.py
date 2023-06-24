@@ -69,13 +69,17 @@ def add_user_data():
             sheet2.delete_rows(2, num_rows)
 
         # Get the total number of rows
-        num_rows = len(sheet3.get_all_values())
-        print("The no. of rows is ", num_rows)
-
-        if num_rows > 1:
-            # Delete rows from 2 to the end
-            sheet3.delete_rows(2, num_rows)
-            print("Sheet3 ROWS DELETED")
+        while True:
+            try:
+                num_rows = len(sheet3.get_all_values())
+                print("The no. of rows is ", num_rows)
+                if num_rows > 1:
+                    # Delete rows from 2 to the end
+                    sheet3.delete_rows(2, num_rows)
+                    print("Sheet3 ROWS DELETED")
+                break
+            except:
+                continue
 
         last_row = last_row_new  # update last_row to the latest one
         new_user_id = len(data) - 1  # -1 because we are considering 0-based indexing
@@ -139,6 +143,7 @@ def add_user_data():
                 try:
                     if count == 3:
                         add_attractions(["food"], hotel)
+                        break
                     add_attractions(interest_query, hotel)
                     count += 1
                     break
