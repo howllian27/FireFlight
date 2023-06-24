@@ -248,7 +248,7 @@ def get_coordinates(location):
         return f"{latitude}, {longitude}"
     else:
         print(f"Coordinates not found for '{location}'")
-        return "37.4, 140.0"
+        return "1.2838, 103.8591"
 
 while True:
     add_user_data()
