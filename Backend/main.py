@@ -171,7 +171,7 @@ def add_attractions(interest_query, destination):
     count = 0
     while places == []:
         if count == 1:
-            places.pop()
+            query = "food"
         params = {
             'location': location,
             'keyword': query,
