@@ -70,7 +70,7 @@
 <p><b>5. CI/CD Pipeline</b></p>
 <p>The CI/CD pipeline implemented for your project utilizes the integration between GitHub, AWS EC2, and Docker to enable a streamlined software delivery process. It involves code development and version control on GitHub, automated builds and tests through CI, containerization with Docker, and deployment to AWS EC2 instances. The pipeline ensures continuous delivery of reliable and scalable applications, empowering efficient development and deployment workflows.</p>
 <h1> Our User Flow Chart </h1>
-<img height = "700" src="./assets/user_flow_chart.png">
+<img height = "800" src="./assets/user_flow_chart.png">
 <h1> The Team </h1>
 <table>
   <tr>
