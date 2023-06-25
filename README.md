@@ -39,6 +39,7 @@
 <p>&nbsp;</p>
 <h1>📽️ Demo Video </h1>
 <img height="500" src="./assets/mockups/home.png">
+<p>Youtube Video Link: Click <a href="https://www.youtube.com/watch?v=HC3zb6tuXyQ">here</a> </p>
 <p>&nbsp;</p>
 <h1>🔨 Core Functionalities </h1>
 <p><b>1. User Profiles</b></p>
