@@ -57,7 +57,6 @@
 <p><b>4. Business Platform (Technical Features In Development) </b></p>
 <img height="500" src="./assets/mockups/biz.png">
 <p>FireFlight is a potential business connection platform designed to facilitate international collaborations and overseas meetings for users from different countries. The platform offers a seamless and secure environment for businesses to connect, network, and establish valuable partnerships across borders. With FireFlight, users can easily discover potential business partners and professionals from various industries and geographical locations. At full potential, the platform provides robust communication tools, including video conferencing and instant messaging, enabling users to conduct virtual meetings and negotiations with ease. Ultimately, it aims to bolster and streamline the process of overseas collaborations. </p>
-<h1> Our Enterprise Architecture </h1>
 <img height="500" src="./assets/mockups/deals.png">
 <p>FireFlight services can be potentially leveraged to provide a unique series of exclusive product packages and promotions to SIA passengers matched through the FireFlight service. With pairs or groups of incoming passengers brought about by FireFlight, SIA can take this opportunity to truly offer these people a unique experience made possible by their large interconnected groups.</p>
 <h1> Our Enterprise Architecture </h1>
@@ -72,6 +71,8 @@
 <p>The ML layer in FireFlight incorporates a thorough machine learning algorithm and model created with the aid of PyTorch to enhance the matching and recommendation capabilities of the application. It leverages user preferences, interests, and other relevant data to provide personalized suggestions for travel companions. Furthermore, we also utilised the BERT model to analyse compatabitility through user sentiments and speech patterns in their bios and thereby match them with other users. The combined effect of both the ML algorithm & model as well as the BERT model allow us to calculate a compatibility score between a pair of users, a score deeply enhanced by analysing user data. </p>
 <p><b>5. CI/CD Pipeline</b></p>
 <p>The CI/CD pipeline implemented for your project utilizes the integration between GitHub, AWS EC2, and Docker to enable a streamlined software delivery process. It involves code development and version control on GitHub, automated builds and tests through CI, containerization with Docker, and deployment to AWS EC2 instances. The pipeline ensures continuous delivery of reliable and scalable applications, empowering efficient development and deployment workflows.</p>
+<h1> Our Matchmaking Algorithm </h1>
+<img height = "400" src="./assets/algo.png">
 <h1> Our User Flow Chart </h1>
 <img height = "800" src="./assets/user_flow_chart.png">
 <h1> The Team </h1>
