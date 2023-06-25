@@ -1,5 +1,5 @@
 <p align="center">
-    <img src = "./assets/logo.png"" style="vertical-align:middle" width="400">
+    <img src = "./assets/logo_new.png"" style="vertical-align:middle" width="400">
 </p>
 <p align="center">
   <b>FireFlight</b>
