@@ -58,6 +58,9 @@
 <img height="500" src="./assets/mockups/biz.png">
 <p>FireFlight is a potential business connection platform designed to facilitate international collaborations and overseas meetings for users from different countries. The platform offers a seamless and secure environment for businesses to connect, network, and establish valuable partnerships across borders. With FireFlight, users can easily discover potential business partners and professionals from various industries and geographical locations. At full potential, the platform provides robust communication tools, including video conferencing and instant messaging, enabling users to conduct virtual meetings and negotiations with ease. Ultimately, it aims to bolster and streamline the process of overseas collaborations. </p>
 <h1> Our Enterprise Architecture </h1>
+<img height="500" src="./assets/mockups/deals.png">
+<p>FireFlight services can be potentially leveraged to provide a unique series of exclusive product packages and promotions to SIA passengers matched through the FireFlight service. With pairs or groups of incoming passengers brought about by FireFlight, SIA can take this opportunity to truly offer these people a unique experience made possible by their large interconnected groups.</p>
+<h1> Our Enterprise Architecture </h1>
 <img height = "400" src="./assets/arch.png">
 <p><b>1. Presentation Layer </b></p>
 <p>The presentation layer refers to the user interface of the application, including the website that travelers interact with. It aims to provide a seamless and user-friendly experience for solo travelers to connect with potential companions. We have also infused a storyline with engaging and interactive animations to enhance the customer journey. </p>
