@@ -57,6 +57,9 @@
 <p><b>3. Chat Platform with Real-Time Translation & Travel Chatbot (In Development) </b></p>
 <img height="300" src="./assets/mockups/chat.png">
 <p>Our chat platform allows matched users to communicate with each other prior to the trip. It also has built-in real-time translation to connect users from different countries speaking different languages. For quick travel inqueries, users may also use our travel chatbot powered by ChatGPT. </p>
+<p><b>3. Business Platform (Technical Features In Development) </b></p>
+<img height="500" src="./assets/mockups/biz.png">
+<p>FireFlight is a potential business connection platform designed to facilitate international collaborations and overseas meetings for users from different countries. The platform offers a seamless and secure environment for businesses to connect, network, and establish valuable partnerships across borders. With FireFlight, users can easily discover potential business partners and professionals from various industries and geographical locations. At full potential, the platform provides robust communication tools, including video conferencing and instant messaging, enabling users to conduct virtual meetings and negotiations with ease. Ultimately, it aims to bolster and streamline the process of overseas collaborations. </p>
 <h1> Our Enterprise Architecture </h1>
 <img height = "400" src="./assets/arch.png">
 <p><b>1. Presentation Layer </b></p>
