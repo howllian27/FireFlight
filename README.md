@@ -39,6 +39,7 @@
 <p>&nbsp;</p>
 <h1>📽️ Demo Video </h1>
 <img height="500" src="./assets/mockups/home.png">
+<p>Youtube Video Link: Click <a href="https://www.youtube.com/watch?v=HC3zb6tuXyQ">here</a> </p>
 <p>&nbsp;</p>
 <h1>🔨 Core Functionalities </h1>
 <p><b>1. User Profiles</b></p>
@@ -48,7 +49,7 @@
 <img height="500" src="./assets/mockups/matches2.png">
 <p>Fireflight uses a sophisticated matchmaking algorithm that takes into account user preferences, shared interests, and other factors to suggest potential matches. The algorithm leverages machine learning and natural language processing to provide highly customised match suggestions.</p>
 <p><b>3. Shared Travel Platform</b></p>
-<img height="300" src="./assets/mockups/attractions.png">
+<img height="500" src="./assets/mockups/attractions2.png">
 <p>Our application acts as not only one that connects like-minded travelers together but also a one-stop platform where travelers can even make future plans for their trips. Once potential matches are formed, users can connect to each other within the app and a recommendation engine will recommend a series of attractions to the matched users. The attractions will be recommended based on their proximity from each of their hotels and shared interests.</p>
 <p><b>3. Chat Platform with Real-Time Translation & Travel Chatbot (In Development) </b></p>
 <img height="300" src="./assets/mockups/chat.png">
@@ -69,7 +70,7 @@
 <p><b>5. CI/CD Pipeline</b></p>
 <p>The CI/CD pipeline implemented for your project utilizes the integration between GitHub, AWS EC2, and Docker to enable a streamlined software delivery process. It involves code development and version control on GitHub, automated builds and tests through CI, containerization with Docker, and deployment to AWS EC2 instances. The pipeline ensures continuous delivery of reliable and scalable applications, empowering efficient development and deployment workflows.</p>
 <h1> Our User Flow Chart </h1>
-<img height = "700" src="./assets/user_flow_chart.png">
+<img height = "800" src="./assets/user_flow_chart.png">
 <h1> The Team </h1>
 <table>
   <tr>
