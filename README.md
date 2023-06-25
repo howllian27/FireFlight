@@ -45,7 +45,7 @@
 <img height="500" src="./assets/mockups/profile_creation.png">
 <p>Users can create personalized profiles, including a self-made bio to introduce themselves. Our matchmaking algorithm will subsequently compare this bio to other users' bios to find the most compatible travel companions for our users. Users may also indicate their own personal interests, such that they may be matched with other users based on common interests.</p>
 <p><b>2. Matchmaking Algorithm</b></p>
-<img height="300" src="./assets/mockups/matches.png">
+<img height="500" src="./assets/mockups/matches2.png">
 <p>Fireflight uses a sophisticated matchmaking algorithm that takes into account user preferences, shared interests, and other factors to suggest potential matches. The algorithm leverages machine learning and natural language processing to provide highly customised match suggestions.</p>
 <p><b>3. Shared Travel Platform</b></p>
 <img height="300" src="./assets/mockups/attractions.png">
